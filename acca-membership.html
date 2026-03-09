@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join the Alliance — American Cannabis Consumer Alliance</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --red-dark: #9B0E24;
+    --black: #0A0A0A;
+    --white: #F8F6F1;
+    --gray: #E8E4DC;
+    --light-gray: #F2EFE9;
+    --mid-gray: #6B6560;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: var(--black);
+    border-bottom: 3px solid var(--red);
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--red); }
+  .nav-links a.active { color: var(--red); }
+
+  /* PAGE HEADER */
+  .page-header {
+    background: var(--black);
+    padding: 9rem 4rem 5rem;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .page-header::after {
+    content: 'JOIN';
+    position: absolute;
+    right: -1rem;
+    bottom: -3rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 16rem;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .header-left { position: relative; z-index: 2; }
+  .page-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .page-title em {
+    font-style: italic;
+    color: var(--red);
+  }
+  .page-desc {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: rgba(248,246,241,0.6);
+    max-width: 480px;
+  }
+
+  /* FOUNDING MEMBER BADGE */
+  .founding-badge {
+    position: relative;
+    z-index: 2;
+    border: 2px solid rgba(200,16,46,0.4);
+    padding: 3rem;
+    text-align: center;
+    background: rgba(200,16,46,0.06);
+  }
+  .founding-badge::before {
+    content: '★ FOUNDING MEMBER ★';
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+  }
+  .founding-badge p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.55;
+    color: rgba(248,246,241,0.8);
+    margin-bottom: 1.5rem;
+  }
+  .founding-badge .badge-note {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(248,246,241,0.3);
+  }
+  .founding-counter {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 3rem;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  /* TIER SECTION */
+  .tier-section {
+    padding: 6rem 4rem;
+    background: var(--white);
+  }
+  .tier-section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    line-height: 1.1;
+    color: var(--black);
+  }
+  .section-subtitle {
+    font-size: 1rem;
+    color: var(--mid-gray);
+    margin-top: 0.8rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .tier-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--black);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .tier-card {
+    background: var(--white);
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .tier-card:hover { background: var(--light-gray); }
+  .tier-card.featured {
+    background: var(--black);
+    color: var(--white);
+  }
+  .tier-card.featured:hover { background: #111; }
+
+  .tier-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    display: inline-block;
+    align-self: flex-start;
+    margin-bottom: 1.5rem;
+  }
+  .tier-tag.free { background: var(--gray); color: var(--mid-gray); }
+  .tier-tag.supporter { background: var(--red); color: var(--white); }
+  .tier-tag.advocate { background: var(--black); color: var(--white); }
+  .tier-card.featured .tier-tag.advocate { background: var(--red); }
+
+  .tier-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .tier-card.featured .tier-name { color: var(--white); }
+
+  .tier-price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    color: var(--mid-gray);
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--gray);
+  }
+  .tier-card.featured .tier-price {
+    color: rgba(248,246,241,0.5);
+    border-bottom-color: rgba(255,255,255,0.1);
+  }
+  .tier-price strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--black);
+    margin-right: 0.2rem;
+  }
+  .tier-card.featured .tier-price strong { color: var(--white); }
+
+  .tier-benefits {
+    list-style: none;
+    flex: 1;
+    margin-bottom: 2rem;
+  }
+  .tier-benefits li {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--gray);
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+    color: #444;
+  }
+  .tier-card.featured .tier-benefits li {
+    border-bottom-color: rgba(255,255,255,0.08);
+    color: rgba(248,246,241,0.75);
+  }
+  .tier-benefits li::before {
+    content: '✓';
+    color: var(--red);
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .tier-benefits li.inactive { opacity: 0.35; }
+  .tier-benefits li.inactive::before { content: '—'; color: var(--mid-gray); }
+
+  .btn-tier {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 2px solid var(--black);
+    background: transparent;
+    color: var(--black);
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+  }
+  .btn-tier:hover { background: var(--black); color: var(--white); }
+  .btn-tier.red { background: var(--red); border-color: var(--red); color: var(--white); }
+  .btn-tier.red:hover { background: var(--red-dark); border-color: var(--red-dark); }
+
+  /* BENEFITS BREAKDOWN */
+  .benefits-section {
+    background: var(--black);
+    padding: 6rem 4rem;
+  }
+  .benefits-section .section-title { color: var(--white); }
+  .benefits-section .section-subtitle { color: rgba(248,246,241,0.5); max-width: 520px; }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.06);
+    margin-top: 3rem;
+  }
+  .benefit-card {
+    background: var(--black);
+    padding: 3rem;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: border-color 0.2s;
+  }
+  .benefit-card:hover { border-color: var(--red); }
+  .benefit-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .benefit-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+  .benefit-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(248,246,241,0.55);
+  }
+  .benefit-card .tier-availability {
+    margin-top: 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  /* DONATE SECTION */
+  .donate-section {
+    padding: 6rem 4rem;
+    background: var(--light-gray);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .donate-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .donate-left p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+  .donate-left .use-of-funds {
+    border-left: 3px solid var(--red);
+    padding-left: 1.2rem;
+  }
+  .donate-left .use-of-funds h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.8rem;
+  }
+  .donate-left .use-of-funds ul {
+    list-style: none;
+  }
+  .donate-left .use-of-funds ul li {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #555;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--gray);
+    display: flex;
+    gap: 0.6rem;
+  }
+  .donate-left .use-of-funds ul li::before {
+    content: '→';
+    color: var(--red);
+    flex-shrink: 0;
+  }
+
+  .donate-right {
+    background: var(--white);
+    border: 2px solid var(--black);
+    padding: 3rem;
+  }
+  .donate-right h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1.5rem;
+  }
+
+  .amount-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .amount-btn {
+    padding: 0.9rem 0.5rem;
+    border: 2px solid var(--gray);
+    background: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--black);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    text-align: center;
+  }
+  .amount-btn:hover,
+  .amount-btn.selected { border-color: var(--red); background: #fdf0f2; }
+  .amount-btn .amount-label {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    margin-top: 0.2rem;
+    font-weight: 600;
+  }
+
+  .custom-amount {
+    margin-bottom: 1.5rem;
+  }
+  .custom-amount label {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    margin-bottom: 0.5rem;
+  }
+  .custom-amount input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 2px solid var(--gray);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    color: var(--black);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .custom-amount input:focus { border-color: var(--red); }
+
+  .frequency-toggle {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 1.5rem;
+    background: var(--gray);
+  }
+  .freq-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    background: transparent;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .freq-btn.active { background: var(--black); color: var(--white); }
+
+  .donate-form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .donate-form-fields input {
+    padding: 0.9rem 1rem;
+    border: 2px solid var(--gray);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    color: var(--black);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .donate-form-fields input:focus { border-color: var(--red); }
+
+  .btn-donate {
+    width: 100%;
+    padding: 1.1rem;
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-donate:hover { background: var(--red-dark); }
+
+  .donate-disclaimer {
+    font-size: 0.72rem;
+    color: var(--mid-gray);
+    line-height: 1.5;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  /* FREE JOIN SECTION */
+  .free-join {
+    padding: 5rem 4rem;
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    border-top: 2px solid var(--gray);
+  }
+  .free-join h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .free-join p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #555;
+  }
+  .free-join-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .free-join-form input {
+    padding: 1rem 1.2rem;
+    border: 2px solid var(--gray);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    color: var(--black);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .free-join-form input:focus { border-color: var(--black); }
+  .btn-black {
+    padding: 1rem 2rem;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-black:hover { background: #222; }
+  .free-note {
+    font-size: 0.75rem;
+    color: var(--mid-gray);
+    margin-top: 0.3rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 3px solid var(--red);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--white);
+  }
+  .footer-logo span { color: var(--red); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--red); }
+  .footer-copy { font-size: 0.75rem; color: var(--mid-gray); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .nav-logo { font-size: 0.75rem; }
+
+    .page-header { grid-template-columns: 1fr; padding: 7rem 1.2rem 3rem; gap: 2.5rem; }
+    .page-header::after { display: none; }
+    .founding-badge { padding: 2rem 1.2rem; }
+
+    .tier-section { padding: 3.5rem 1.2rem; }
+    .tier-grid { grid-template-columns: 1fr; max-width: 100%; }
+
+    .benefits-section { padding: 3.5rem 1.2rem; }
+    .benefits-grid { grid-template-columns: 1fr; }
+
+    .donate-section { grid-template-columns: 1fr; gap: 2.5rem; padding: 3.5rem 1.2rem; }
+    .donate-right { padding: 2rem 1.2rem; }
+    .amount-grid { grid-template-columns: repeat(3, 1fr); }
+
+    .free-join { grid-template-columns: 1fr; gap: 2rem; padding: 3.5rem 1.2rem; }
+
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem 1.2rem; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><span>American</span> Cannabis Consumer Alliance</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="acca-resources.html">Resources</a></li>
+    <li><a href="#tiers" class="active">Join</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="header-left">
+    <p class="page-eyebrow">Membership</p>
+    <h1 class="page-title">Be part of<br>something<br><em>real.</em></h1>
+    <p class="page-desc">ACCA is built by consumers, for consumers. No industry funding controls our message. No lobbyists set our agenda. Just people who believe policy should follow evidence — and are willing to show up when it doesn't.</p>
+  </div>
+  <div class="founding-badge">
+    <div class="founding-counter">Charter</div>
+    <p>"There is no cannabis industry without consumers. It's time we acted like it."</p>
+    <p class="badge-note">Join now and be recognized as a Founding Member of the Alliance</p>
+  </div>
+</div>
+
+<!-- TIER SECTION -->
+<section class="tier-section" id="tiers">
+  <div class="tier-section-header">
+    <p class="section-label">Membership Tiers</p>
+    <h2 class="section-title">Choose your level of involvement.</h2>
+    <p class="section-subtitle">All members get access to our alerts and research. Sustaining members keep the lights on.</p>
+  </div>
+
+  <div class="tier-grid">
+
+    <!-- FREE TIER -->
+    <div class="tier-card">
+      <span class="tier-tag free">Free</span>
+      <div class="tier-name">Ally</div>
+      <div class="tier-price"><strong>$0</strong> / always free</div>
+      <ul class="tier-benefits">
+        <li>Early legislative alerts when bills move</li>
+        <li>Access to ACCA research library</li>
+        <li>Consumer education newsletter</li>
+        <li>Talking points & advocacy tools</li>
+        <li class="inactive">Founding Member recognition</li>
+        <li class="inactive">Invites to happy hours & events</li>
+        <li class="inactive">Supporter-only updates & previews</li>
+      </ul>
+      <a href="#free-join" class="btn-tier">Join Free →</a>
+    </div>
+
+    <!-- SUPPORTER TIER -->
+    <div class="tier-card featured">
+      <span class="tier-tag supporter">Most Popular</span>
+      <div class="tier-name">Supporter</div>
+      <div class="tier-price"><strong>$5</strong> / month</div>
+      <ul class="tier-benefits">
+        <li>Everything in Ally</li>
+        <li>Founding Member recognition on site</li>
+        <li>Invites to happy hours & consumer events</li>
+        <li>Supporter-only updates & previews</li>
+        <li>Direct line to ACCA leadership</li>
+        <li class="inactive">Priority event access & reserved seating</li>
+        <li class="inactive">Co-branded advocacy materials</li>
+      </ul>
+      <a href="#donate" class="btn-tier red">Become a Supporter →</a>
+    </div>
+
+    <!-- ADVOCATE TIER -->
+    <div class="tier-card">
+      <span class="tier-tag advocate">All In</span>
+      <div class="tier-name">Advocate</div>
+      <div class="tier-price"><strong>$25</strong> / month</div>
+      <ul class="tier-benefits">
+        <li>Everything in Supporter</li>
+        <li>Priority event access & reserved seating</li>
+        <li>Co-branded advocacy materials</li>
+        <li>Name in ACCA legislative testimony</li>
+        <li>Annual impact report</li>
+        <li>Recognition in founding documents</li>
+        <li>Direct input on ACCA policy priorities</li>
+      </ul>
+      <a href="#donate" class="btn-tier">Become an Advocate →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- BENEFITS BREAKDOWN -->
+<section class="benefits-section">
+  <p class="section-label">Why It Matters</p>
+  <h2 class="section-title" style="color:var(--white)">What your membership actually does.</h2>
+  <p class="section-subtitle">ACCA is lean by design. Every dollar goes toward building the consumer infrastructure that was missing when SB 1548 nearly passed.</p>
+
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <span class="benefit-icon">⚡</span>
+      <h3>Rapid Response</h3>
+      <p>When a bill moves, you'll know before the press does. ACCA monitors legislative calendars in Oregon, Hawai'i, and nationally so our network can mobilize before a hearing — not after.</p>
+      <p class="tier-availability">Available to all members</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">📚</span>
+      <h3>Research You Can Actually Use</h3>
+      <p>We translate peer-reviewed science and government data into plain language arguments you can use with friends, family, and elected officials. No jargon. No industry spin. Just the facts.</p>
+      <p class="tier-availability">Available to all members</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🍻</span>
+      <h3>Consumer Events</h3>
+      <p>We're building a community of informed consumers across Oregon and Hawai'i through in-person happy hours, organizing meetups, and advocacy trainings. Sustaining members get first access and invites.</p>
+      <p class="tier-availability">Supporter & Advocate tiers</p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🏛️</span>
+      <h3>A Seat at the Table</h3>
+      <p>Consumer voices change outcomes in hearing rooms. ACCA helped defeat Oregon SB 1548 with organized, evidence-based testimony. Your membership helps us show up every session — not just the ones that make headlines.</p>
+      <p class="tier-availability">Advocate tier — named in testimony</p>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE SECTION -->
+<section class="donate-section" id="donate">
+  <div class="donate-left">
+    <p class="section-label">Sustain the Alliance</p>
+    <h2>Your support keeps the consumer voice in the room.</h2>
+    <p>ACCA runs lean and volunteer-driven. Sustaining contributions fund event costs, research tools, rapid response infrastructure, and the operational basics that keep the org moving between sessions.</p>
+    <div class="use-of-funds">
+      <h4>How funds are used</h4>
+      <ul>
+        <li>Consumer education events & happy hours</li>
+        <li>Research tools & legislative tracking</li>
+        <li>Website & rapid response infrastructure</li>
+        <li>Testimony preparation & hearing attendance</li>
+        <li>Grassroots organizing in Oregon & Hawai'i</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="donate-right">
+    <h3>Make a Contribution</h3>
+
+    <div class="frequency-toggle">
+      <button class="freq-btn active" onclick="setFreq(this, 'monthly')">Monthly</button>
+      <button class="freq-btn" onclick="setFreq(this, 'one-time')">One-Time</button>
+    </div>
+
+    <div class="amount-grid">
+      <button class="amount-btn selected" onclick="selectAmount(this, '5')">
+        $5
+        <span class="amount-label">Ally</span>
+      </button>
+      <button class="amount-btn" onclick="selectAmount(this, '25')">
+        $25
+        <span class="amount-label">Supporter</span>
+      </button>
+      <button class="amount-btn" onclick="selectAmount(this, '50')">
+        $50
+        <span class="amount-label">Advocate</span>
+      </button>
+      <button class="amount-btn" onclick="selectAmount(this, '100')">
+        $100
+        <span class="amount-label">Champion</span>
+      </button>
+      <button class="amount-btn" onclick="selectAmount(this, '250')">
+        $250
+        <span class="amount-label">Founding</span>
+      </button>
+      <button class="amount-btn" onclick="selectAmount(this, 'custom')">
+        Other
+        <span class="amount-label">Custom</span>
+      </button>
+    </div>
+
+    <div class="custom-amount" id="custom-field" style="display:none;">
+      <label>Enter amount ($)</label>
+      <input type="number" placeholder="Enter amount" min="1">
+    </div>
+
+    <div class="donate-form-fields">
+      <input type="text" placeholder="First name">
+      <input type="text" placeholder="Last name">
+      <input type="email" placeholder="Email address">
+      <input type="text" placeholder="State">
+    </div>
+
+    <button class="btn-donate">Contribute & Join the Alliance →</button>
+    <p class="donate-disclaimer">Contributions to ACCA support consumer advocacy and organizing. ACCA is in the process of establishing its 501(c)(4) structure. Please consult your tax advisor regarding deductibility. We will never sell your information.</p>
+  </div>
+</section>
+
+<!-- FREE JOIN -->
+<section class="free-join" id="free-join">
+  <div>
+    <p class="section-label">Not ready to contribute?</p>
+    <h2>Join free.<br>Stay informed.<br>Show up when it counts.</h2>
+    <p>The most important thing you can do right now is be on the list. When Senator Reynolds reintroduces this bill in 2027 — and she will — we need to be ready to flood the inbox of every legislator on the committee within 24 hours.</p>
+  </div>
+  <div>
+    <div class="free-join-form">
+      <input type="text" placeholder="First name">
+      <input type="email" placeholder="Email address">
+      <input type="text" placeholder="State">
+      <button class="btn-black">Join the Alliance — It's Free →</button>
+      <p class="free-note">No spam. No selling your data. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span>American</span> Cannabis Consumer Alliance</div>
+  <ul class="footer-links">
+    <li><a href="#">About</a></li>
+    <li><a href="acca-resources.html">Resources</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">Privacy</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 ACCA. All rights reserved.</p>
+</footer>
+
+<script>
+  function selectAmount(btn, amount) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const customField = document.getElementById('custom-field');
+    customField.style.display = amount === 'custom' ? 'block' : 'none';
+  }
+
+  function setFreq(btn, freq) {
+    document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>

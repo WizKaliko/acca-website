@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who We Are — American Cannabis Consumer Alliance</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --red-dark: #9B0E24;
+    --black: #0A0A0A;
+    --white: #F8F6F1;
+    --gray: #E8E4DC;
+    --light-gray: #F2EFE9;
+    --mid-gray: #6B6560;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: var(--black);
+    border-bottom: 3px solid var(--red);
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--red); }
+  .nav-links a.active { color: var(--red); }
+
+  /* PAGE HEADER */
+  .page-header {
+    background: var(--black);
+    padding: 9rem 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::after {
+    content: 'WHO';
+    position: absolute;
+    right: -2rem;
+    bottom: -3rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 18rem;
+    color: rgba(255,255,255,0.025);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .page-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    max-width: 700px;
+  }
+  .page-title em { font-style: italic; color: var(--red); }
+  .page-desc {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: rgba(248,246,241,0.55);
+    max-width: 580px;
+  }
+
+  /* ORIGIN STORY */
+  .origin-section {
+    padding: 7rem 4rem;
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .origin-left h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .origin-left p {
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1.2rem;
+  }
+  .origin-left .pull-quote {
+    border-left: 4px solid var(--red);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--black);
+  }
+
+  .origin-right {
+    position: sticky;
+    top: 7rem;
+  }
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 2px solid var(--gray);
+    padding-left: 2rem;
+  }
+  .timeline-item {
+    padding-bottom: 2.5rem;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.45rem;
+    top: 0.4rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: var(--red);
+    border: 2px solid var(--white);
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-year {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.3rem;
+  }
+  .timeline-item h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 0.3rem;
+  }
+  .timeline-item p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--mid-gray);
+  }
+
+  /* FOUNDER SECTION */
+  .founder-section {
+    background: var(--black);
+    padding: 7rem 4rem;
+  }
+
+  /* Horizontal founder card */
+  .founder-card-horizontal {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .founder-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+  .founder-info-horizontal {
+    padding: 2.5rem 3rem;
+    border-left: 4px solid var(--red);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .founder-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.4rem;
+  }
+  .founder-name-h {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 0.2rem;
+  }
+  .founder-title-h {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(248,246,241,0.4);
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .founder-info-horizontal p {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: rgba(248,246,241,0.65);
+    margin-bottom: 0.9rem;
+  }
+  .founder-info-horizontal p:last-child { margin-bottom: 0; }
+
+  @media (max-width: 768px) {
+    .founder-card-horizontal { grid-template-columns: 1fr; }
+    .founder-photo { aspect-ratio: 4/3; object-position: center top; }
+    .founder-info-horizontal { border-left: none; border-top: 4px solid var(--red); padding: 1.5rem; }
+  }
+
+  /* MISSION & VALUES */
+  .values-section {
+    padding: 7rem 4rem;
+    background: var(--light-gray);
+  }
+  .values-section .section-title { color: var(--black); }
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--black);
+    margin-top: 3rem;
+  }
+  .value-card {
+    background: var(--white);
+    padding: 3rem 2.5rem;
+    transition: background 0.2s;
+  }
+  .value-card:hover { background: var(--light-gray); }
+  .value-number {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 3.5rem;
+    color: var(--red);
+    opacity: 0.2;
+    line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+  .value-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 0.8rem;
+  }
+  .value-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  /* BOARD SECTION */
+  .board-section {
+    padding: 7rem 4rem;
+    background: var(--white);
+  }
+  .board-section .section-title { color: var(--black); }
+  .board-intro {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--mid-gray);
+    max-width: 580px;
+    margin-bottom: 3rem;
+  }
+
+  .board-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  .board-placeholder {
+    border: 2px dashed var(--gray);
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .board-placeholder:hover { border-color: var(--red); }
+
+  .board-member {
+    background: var(--light-gray);
+    padding: 2.5rem 2rem;
+    border: 2px solid var(--gray);
+  }
+  .board-member-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--black);
+    margin-bottom: 0.25rem;
+  }
+  .board-member-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray);
+  }
+  .board-member p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #555;
+  }
+
+  /* Horizontal confirmed member card */
+  .board-member-horizontal {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    border: 2px solid var(--black);
+    margin-bottom: 2rem;
+    background: var(--white);
+  }
+  .board-member-horizontal .member-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: right center;
+    display: block;
+  }
+  .board-member-horizontal .member-info {
+    padding: 2.5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 4px solid var(--red);
+  }
+  .board-member-horizontal .member-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+  .board-member-horizontal .member-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: var(--black);
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+  .board-member-horizontal .member-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--gray);
+  }
+  .board-member-horizontal p {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: #555;
+    margin-bottom: 0.9rem;
+  }
+  .board-member-horizontal p:last-child { margin-bottom: 0; }
+
+  .board-confirmed-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--black);
+  }
+  .board-forming-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--gray);
+  }
+
+  @media (max-width: 768px) {
+    .board-member-horizontal { grid-template-columns: 1fr; }
+    .board-member-horizontal .member-photo { aspect-ratio: 4/3; object-position: center top; }
+    .board-member-horizontal .member-info { border-left: none; border-top: 4px solid var(--red); padding: 1.5rem; }
+  }
+  .board-placeholder .placeholder-icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: var(--gray);
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+  .board-placeholder h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    margin-bottom: 0.5rem;
+  }
+  .board-placeholder p {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: #aaa;
+  }
+
+  /* Board CTA */
+  .board-cta {
+    background: var(--black);
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+  .board-cta h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  .board-cta p {
+    font-size: 0.9rem;
+    color: rgba(248,246,241,0.5);
+    max-width: 500px;
+    line-height: 1.65;
+  }
+  .board-cta-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    min-width: 280px;
+  }
+  .board-cta-form input {
+    padding: 0.9rem 1rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .board-cta-form input::placeholder { color: rgba(248,246,241,0.3); }
+  .board-cta-form input:focus { border-color: var(--red); }
+  .btn-red {
+    padding: 0.9rem 1.5rem;
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-red:hover { background: var(--red-dark); }
+
+  /* TRANSPARENCY */
+  .transparency-section {
+    padding: 5rem 4rem;
+    background: var(--light-gray);
+    border-top: 2px solid var(--gray);
+  }
+  .transparency-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--black);
+    margin-top: 2.5rem;
+  }
+  .transparency-item {
+    background: var(--white);
+    padding: 2rem 1.8rem;
+    text-align: center;
+  }
+  .transparency-item .t-icon { font-size: 1.8rem; display: block; margin-bottom: 0.8rem; }
+  .transparency-item h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 0.4rem;
+  }
+  .transparency-item p {
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--mid-gray);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 3px solid var(--red);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.1rem; color: var(--white); }
+  .footer-logo span { color: var(--red); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--red); }
+  .footer-copy { font-size: 0.75rem; color: var(--mid-gray); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .nav-logo { font-size: 0.75rem; }
+    .page-header { padding: 7rem 1.2rem 3.5rem; }
+    .page-header::after { display: none; }
+    .origin-section { grid-template-columns: 1fr; gap: 3rem; padding: 3.5rem 1.2rem; }
+    .origin-right { position: static; }
+    .founder-section { padding: 3.5rem 1.2rem; }
+    .founder-card { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1.2rem; }
+    .founder-portrait { aspect-ratio: 1/1; max-width: 180px; }
+    .values-section { padding: 3.5rem 1.2rem; }
+    .values-grid { grid-template-columns: 1fr; }
+    .board-section { padding: 3.5rem 1.2rem; }
+    .board-grid { grid-template-columns: 1fr; }
+    .board-cta { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 1.2rem; }
+    .board-cta-form { min-width: unset; }
+    .transparency-section { padding: 3.5rem 1.2rem; }
+    .transparency-grid { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem 1.2rem; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><span>American</span> Cannabis Consumer Alliance</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="acca-resources.html">Resources</a></li>
+    <li><a href="acca-membership.html">Join</a></li>
+    <li><a href="#" class="active">About</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <p class="page-eyebrow">Who We Are</p>
+  <h1 class="page-title">Built by consumers.<br>For <em>everyone.</em></h1>
+  <p class="page-desc">ACCA exists because when Oregon's SB 1548 was moving through the legislature, there was no organized consumer voice in the room. We're changing that — starting in Oregon and Hawai'i, and building toward something national.</p>
+</div>
+
+<!-- ORIGIN STORY -->
+<section class="origin-section">
+  <div class="origin-left">
+    <h2>Why this org exists — and why now.</h2>
+    <p>In 2025, Oregon Senate Bill 1548 came within a few votes of becoming law. The bill would have required individual wrapping for every cannabis edible unit and capped each unit at 10mg THC — changes framed as child safety measures, but unsupported by Oregon's own Poison Center data, peer-reviewed pharmacology, or evidence on packaging effectiveness.</p>
+    <p>Industry groups pushed back. But the most credible voice in that fight wasn't industry — it was consumers with no financial stake in the outcome, armed with facts, showing up at hearings and flooding legislative inboxes. The bill was defeated.</p>
+    <div class="pull-quote">
+      "The most powerful thing we did wasn't hire a lobbyist. It was put real people with real research in front of legislators who had only heard one side."
+    </div>
+    <p>That experience made one thing clear: cannabis consumers need a permanent, organized, non-industry voice in every legislative session — not just when a crisis bill is already moving. The American Cannabis Consumer Alliance was built to be that voice.</p>
+    <p>We are not a trade association. We don't represent growers, processors, or retailers. We represent the 64 million Americans who used cannabis legally last year and deserve policy that treats them like adults.</p>
+  </div>
+  <div class="origin-right">
+    <p style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:0.72rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--red);margin-bottom:1.5rem;">How we got here</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1996–1998</div>
+        <h4>Medical Legalization Begins</h4>
+        <p>California, then Oregon, legalize medical cannabis. A regulated market is born — with no organized consumer voice to shape it from the start.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2012</div>
+        <h4>Adult Use Arrives</h4>
+        <p>Colorado and Washington become the first states to legalize adult-use cannabis. Sixty-four million legal consumers exist — still unorganized, still unrepresented in policy debates.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2018</div>
+        <h4>The Equity Gap Named</h4>
+        <p>MCBA publishes the first National Cannabis Equity Report, establishing that the war on drugs fell hardest on communities of color — and that any legalization framework must address that harm.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2024</div>
+        <h4>88% Support — Still No Seat at the Table</h4>
+        <p>Pew Research confirms supermajority support for legal cannabis. Yet restrictive bills keep advancing in state legislatures, pushed by a handful of voices with no organized consumer pushback.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2025</div>
+        <h4>Oregon SB 1548 — The Catalyst</h4>
+        <p>A consumer-led, evidence-based campaign defeats SB 1548 in the Oregon House. Proof that organized consumers can win. Problem: no permanent org exists to hold that ground between sessions.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2026</div>
+        <h4>ACCA Founded</h4>
+        <p>The American Cannabis Consumer Alliance launches to fill that gap — building the list, the research library, and the infrastructure before the next session arrives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <p class="section-label">What We Stand For</p>
+  <h2 class="section-title" style="color:var(--black)">Our principles.</h2>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-number">01</div>
+      <h3>Consumer First</h3>
+      <p>We represent cannabis consumers — not the businesses that sell to them. Our positions are determined by what is good for the people who use cannabis legally and responsibly, full stop.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-number">02</div>
+      <h3>Evidence Over Advocacy</h3>
+      <p>Every position we take is backed by peer-reviewed science, government data, or primary source reporting. We don't argue from ideology — we argue from facts. When the facts change, we change with them.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-number">03</div>
+      <h3>Regulation Works</h3>
+      <p>We believe the licensed, regulated cannabis market is safer for consumers, safer for communities, and better for public health than prohibition or the unregulated market. We defend and improve regulation — we don't oppose it.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-number">04</div>
+      <h3>Equity Is Non-Negotiable</h3>
+      <p>Cannabis prohibition fell hardest on communities of color. Any cannabis policy framework that doesn't center equity and address those harms is incomplete. ACCA brings that lens to every legislative fight.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-number">05</div>
+      <h3>Transparency Always</h3>
+      <p>We are transparent about who funds us, what we spend money on, and what positions we hold. Consumers deserve to know who is speaking in their name — and why.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-number">06</div>
+      <h3>Show Up</h3>
+      <p>Good policy advocacy requires presence — in hearing rooms, at community meetings, in the inbox of every legislator considering a bill that affects consumers. We don't just publish reports. We show up.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER SECTION -->
+<section class="founder-section">
+  <p class="section-label">Leadership</p>
+  <h2 class="section-title">Meet the Founder</h2>
+
+  <div class="founder-card-horizontal">
+    <img class="founder-photo" src="kaliko-portrait.jpg" alt="Kaliko Castille at the Oregon State Capitol">
+    <div class="founder-info-horizontal">
+      <div class="founder-eyebrow">Founder & Executive Director</div>
+      <div class="founder-name-h">Kaliko Castille</div>
+      <div class="founder-title-h">American Cannabis Consumer Alliance</div>
+      <p>Kaliko Castille has spent more than a decade at the intersection of cannabis policy, community organizing, and political strategy. He served as Director of Marketing at the National Cannabis Industry Association (NCIA) and as Board President of the Minority Cannabis Business Association (MCBA), where he led the creation of MCBA's National Cannabis Equity Report and helped develop model legalization policies for state legislatures. His federal policy work included direct lobbying for equitable cannabis reform.</p>
+      <p>He currently serves as Political Director at APANO Action Fund and founded ACCA after the 2025 SB 1548 fight made clear that consumers needed a permanent, non-industry voice in Salem — and in every state where bad cannabis policy is being made. His work has been featured in MSNBC, Forbes, Bloomberg, Rolling Stone, The Washington Post, The Hill, and Cheddar. He was named to MJ Venture's 40 Under 40.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOARD SECTION -->
+<section class="board-section">
+  <p class="section-label">Governance</p>
+  <h2 class="section-title">Board of Directors</h2>
+  <p class="board-intro">ACCA is in the process of establishing its formal board of directors. We are actively recruiting community leaders, policy experts, and consumer advocates who share our commitment to evidence-based cannabis policy reform.</p>
+
+  <p class="board-confirmed-label">Board Members</p>
+
+  <div class="board-member-horizontal">
+    <img class="member-photo" src="casey-portrait.jpg" alt="Casey Houlihan at an Oregon cannabis farm">
+    <div class="member-info">
+      <div class="member-eyebrow">Board Member</div>
+      <div class="member-name">Casey Houlihan</div>
+      <div class="member-title">Executive Director, Oregon Retailers of Cannabis Association</div>
+      <p>Casey has been shaping Oregon cannabis policy since 2013, when HB 3460 created the state's first licensed medical dispensary system and the work of turning legalization into functioning law began in earnest. A political organizer by training — with experience on candidate campaigns and as legislative staff — he built ORCA from the ground up into a 500-member organization that became one of the most effective cannabis trade associations in the country.</p>
+      <p>His decade-plus of work in the Oregon Legislature — testifying, lobbying, and negotiating the rules that govern the regulated market — gives him a ground-level understanding of how cannabis bills move and where consumer interests get lost between industry and regulators. He's argued in Salem on the record: excessive regulation and punitive taxation don't protect consumers, they drive them toward the unregulated market.</p>
+    </div>
+  </div>
+
+  <div class="board-member-horizontal">
+    <img class="member-photo" src="anthony-portrait.jpg" alt="Anthony Johnson">
+    <div class="member-info">
+      <div class="member-eyebrow">Board Member</div>
+      <div class="member-name">Anthony Johnson</div>
+      <div class="member-title">Chief Petitioner, Oregon Measure 91 & Measure 110 · Director, New Approach Oregon</div>
+      <p>Anthony Johnson is one of the most consequential drug policy reformers in Oregon history. A former criminal defense attorney, he served as Chief Petitioner, co-author, and primary spokesperson for both Measure 91 — which legalized adult-use cannabis in Oregon in 2014 — and Measure 110, which made Oregon the first state in the nation to decriminalize personal possession of all drugs in 2020. Both campaigns passed with majority support.</p>
+      <p>As Director of New Approach Oregon, Anthony has spent years fighting for sensible implementation of the laws he helped create — at the legislature, before regulatory bodies, and at city councils and county commissions across the state. He brings to ACCA's board a rare combination: the credibility of someone who actually changed the law, and the tenacity of an advocate who has stayed in the room long after the victory to make sure it holds.</p>
+    </div>
+  </div>
+
+  <p class="board-forming-label">Board Forming — Join Us</p>
+
+  <div class="board-grid">
+    <div class="board-placeholder">
+      <div class="placeholder-icon">🏥</div>
+      <h4>Public Health Voice</h4>
+      <p>A medical professional or public health researcher who can anchor our science-based approach and engage credibly with health-focused opposition.</p>
+    </div>
+    <div class="board-placeholder">
+      <div class="placeholder-icon">⚡</div>
+      <h4>Organizer / Mobilizer</h4>
+      <p>Someone with grassroots organizing experience who can help build the rapid response network that activates when legislation moves.</p>
+    </div>
+    <div class="board-placeholder">
+      <div class="placeholder-icon">🌺</div>
+      <h4>Hawai'i Representative</h4>
+      <p>A Hawai'i-based community leader who can help establish ACCA's presence and build the consumer list ahead of the next state session.</p>
+    </div>
+    <div class="board-placeholder">
+      <div class="placeholder-icon">💼</div>
+      <h4>Legal / Financial</h4>
+      <p>A legal or financial professional to support ACCA's organizational development as we build out the c3/c4/PAC structure.</p>
+    </div>
+    <div class="board-placeholder">
+      <div class="placeholder-icon">🗣️</div>
+      <h4>Community Voice</h4>
+      <p>A consumer advocate — not a professional — who represents the everyday people ACCA exists to serve and can keep us grounded in that mission.</p>
+    </div>
+  </div>
+
+  <div class="board-cta">
+    <div>
+      <h3>Interested in serving on the ACCA Board?</h3>
+      <p>We're building something new. If you have expertise in policy, public health, law, organizing, or community advocacy — and you believe consumers deserve a real seat at the table — we want to hear from you. Board service is volunteer-based and Oregon or Hawai'i connection is preferred but not required.</p>
+    </div>
+    <div class="board-cta-form">
+      <input type="text" placeholder="Your name">
+      <input type="email" placeholder="Email address">
+      <input type="text" placeholder="Your background / expertise">
+      <button class="btn-red">Express Interest →</button>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPARENCY -->
+<section class="transparency-section">
+  <p class="section-label">Transparency</p>
+  <h2 class="section-title" style="color:var(--black);font-size:clamp(1.5rem,2.5vw,2.2rem);margin-bottom:0;">Our commitments to you.</h2>
+  <div class="transparency-grid">
+    <div class="transparency-item">
+      <span class="t-icon">🚫</span>
+      <h4>No Industry Control</h4>
+      <p>Industry can sponsor events. Industry cannot set our positions. Our policy stances are determined by consumer interests and evidence — period.</p>
+    </div>
+    <div class="transparency-item">
+      <span class="t-icon">📋</span>
+      <h4>Published Financials</h4>
+      <p>Once formally established, ACCA will publish annual financial disclosures so members know exactly how their contributions are used.</p>
+    </div>
+    <div class="transparency-item">
+      <span class="t-icon">🔒</span>
+      <h4>Your Data Is Yours</h4>
+      <p>We will never sell, rent, or share your personal information with third parties — including industry partners or sponsors.</p>
+    </div>
+    <div class="transparency-item">
+      <span class="t-icon">📣</span>
+      <h4>Public Positions</h4>
+      <p>Every bill we support or oppose, every testimony we submit, and every statement we make will be publicly posted on this site.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span>American</span> Cannabis Consumer Alliance</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="acca-resources.html">Resources</a></li>
+    <li><a href="acca-membership.html">Join</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 ACCA. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

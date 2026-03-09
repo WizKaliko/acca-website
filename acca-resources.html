@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resource Center — American Cannabis Consumer Alliance</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C8102E;
+    --red-dark: #9B0E24;
+    --black: #0A0A0A;
+    --white: #F8F6F1;
+    --gray: #E8E4DC;
+    --mid-gray: #6B6560;
+    --light-gray: #F2EFE9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: var(--black);
+    border-bottom: 3px solid var(--red);
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--red); }
+
+  /* PAGE HEADER */
+  .page-header {
+    background: var(--black);
+    padding: 9rem 4rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::after {
+    content: 'RESOURCES';
+    position: absolute;
+    right: -2rem;
+    bottom: -2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 12rem;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .page-header-inner {
+    max-width: 700px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .page-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .page-title em {
+    font-style: italic;
+    color: var(--red);
+  }
+  .page-desc {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: rgba(248,246,241,0.65);
+    max-width: 560px;
+  }
+
+  /* SECTION NAV TABS */
+  .section-tabs {
+    background: var(--black);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0 4rem;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .section-tabs::-webkit-scrollbar { display: none; }
+  .tab-link {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    text-decoration: none;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-link:hover { color: var(--white); }
+  .tab-link.active { color: var(--red); border-bottom-color: var(--red); }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    line-height: 1.1;
+    color: var(--black);
+    margin-bottom: 0.8rem;
+  }
+  .section-subtitle {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--mid-gray);
+    max-width: 580px;
+    margin-bottom: 3rem;
+  }
+
+  /* ===================== */
+  /* SECTION 1: THE FACTS  */
+  /* ===================== */
+  #facts { padding: 6rem 4rem; background: var(--white); }
+
+  .facts-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    background: var(--black);
+    margin-bottom: 3rem;
+  }
+  .fact-hero-card {
+    background: var(--white);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+  }
+  .fact-hero-card:hover { background: var(--light-gray); }
+  .fact-hero-card .big-number {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(3.5rem, 5vw, 5rem);
+    line-height: 1;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+  .fact-hero-card .fact-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 0.8rem;
+  }
+  .fact-hero-card .fact-body {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #555;
+  }
+  .fact-hero-card .fact-source {
+    margin-top: 1.2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+  }
+  .fact-hero-card .fact-source a {
+    color: var(--red);
+    text-decoration: none;
+  }
+  .fact-hero-card .fact-source a:hover { text-decoration: underline; }
+
+  /* Myth vs Fact */
+  .myth-fact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .myth-fact-card {
+    border: 2px solid var(--gray);
+    padding: 2rem;
+    position: relative;
+  }
+  .myth-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .myth-tag.myth { background: #f5e6e8; color: var(--red-dark); }
+  .myth-tag.fact { background: #e8f0e8; color: #2a6b2a; }
+  .myth-fact-card h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.6rem;
+    color: var(--black);
+  }
+  .myth-fact-card p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #555;
+  }
+  .myth-fact-card .source-link {
+    display: block;
+    margin-top: 0.8rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    text-decoration: none;
+  }
+  .myth-fact-card .source-link:hover { text-decoration: underline; }
+
+  /* ========================= */
+  /* SECTION 2: HOW REG WORKS  */
+  /* ========================= */
+  #regulation {
+    padding: 6rem 4rem;
+    background: var(--black);
+  }
+  #regulation .section-title { color: var(--white); }
+  #regulation .section-subtitle { color: rgba(248,246,241,0.55); }
+
+  .reg-pipeline {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-bottom: 4rem;
+    position: relative;
+  }
+  .reg-pipeline::before {
+    content: '';
+    position: absolute;
+    top: 3.2rem;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: var(--red);
+    z-index: 0;
+  }
+  .reg-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  .reg-step-number {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background: var(--red);
+    color: var(--white);
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border: 3px solid var(--black);
+  }
+  .reg-step h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .reg-step p {
+    font-size: 0.8rem;
+    line-height: 1.55;
+    color: rgba(248,246,241,0.5);
+  }
+
+  .reg-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(255,255,255,0.06);
+  }
+  .reg-compare-col {
+    padding: 2.5rem;
+    background: var(--black);
+  }
+  .reg-compare-col h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid;
+  }
+  .reg-compare-col.legal h3 { color: #6bbd6b; border-color: #6bbd6b; }
+  .reg-compare-col.unregulated h3 { color: var(--red); border-color: var(--red); }
+  .reg-compare-col ul { list-style: none; }
+  .reg-compare-col ul li {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(248,246,241,0.7);
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .reg-compare-col ul li::before {
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+  }
+  .legal ul li::before { content: '✓'; color: #6bbd6b; }
+  .unregulated ul li::before { content: '✕'; color: var(--red); }
+
+  /* ====================== */
+  /* SECTION 3: KNOW RIGHTS */
+  /* ====================== */
+  #rights { padding: 6rem 4rem; background: var(--light-gray); }
+
+  .rights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .rights-card {
+    background: var(--white);
+    border-top: 4px solid var(--red);
+    padding: 2.5rem 2rem;
+  }
+  .rights-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .rights-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 0.8rem;
+  }
+  .rights-card p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  .rights-card .learn-more {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    text-decoration: none;
+    border-bottom: 1px solid var(--red);
+    padding-bottom: 1px;
+  }
+
+  /* ======================= */
+  /* SECTION 4: POLICY WATCH */
+  /* ======================= */
+  #policy { padding: 6rem 4rem; background: var(--white); }
+
+  .policy-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+  }
+  .policy-featured {
+    background: var(--black);
+    padding: 3rem;
+  }
+  .policy-featured .status-badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+  .badge-defeated { background: #2a6b2a; color: #fff; }
+  .badge-watch { background: var(--red); color: #fff; }
+  .badge-active { background: #b8860b; color: #fff; }
+  .policy-featured h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+    line-height: 1.25;
+  }
+  .policy-featured p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(248,246,241,0.65);
+    margin-bottom: 1.5rem;
+  }
+  .policy-featured .outcome {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6bbd6b;
+    border-left: 3px solid #6bbd6b;
+    padding-left: 1rem;
+  }
+
+  .policy-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .policy-item {
+    border-left: 3px solid var(--gray);
+    padding: 1.2rem 1.2rem;
+    background: var(--light-gray);
+    transition: border-color 0.2s;
+  }
+  .policy-item:hover { border-left-color: var(--red); }
+  .policy-item .item-state {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.3rem;
+  }
+  .policy-item h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--black);
+    margin-bottom: 0.3rem;
+  }
+  .policy-item p {
+    font-size: 0.83rem;
+    line-height: 1.55;
+    color: var(--mid-gray);
+  }
+
+  /* ======================= */
+  /* SECTION 5: SAFE STORAGE */
+  /* ======================= */
+  #storage { padding: 6rem 4rem; background: var(--black); }
+  #storage .section-title { color: var(--white); }
+  #storage .section-subtitle { color: rgba(248,246,241,0.55); }
+
+  .storage-stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.06);
+    margin-bottom: 3rem;
+  }
+  .storage-stat {
+    background: var(--black);
+    padding: 2.5rem;
+    text-align: center;
+  }
+  .storage-stat .pct {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 4rem;
+    color: var(--red);
+    line-height: 1;
+  }
+  .storage-stat .pct-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(248,246,241,0.6);
+    margin-top: 0.5rem;
+    line-height: 1.4;
+  }
+  .storage-stat .pct-source {
+    font-size: 0.7rem;
+    color: rgba(248,246,241,0.25);
+    margin-top: 0.5rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .storage-tips {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .storage-tip {
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .storage-tip:hover { border-color: var(--red); }
+  .tip-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .storage-tip h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .storage-tip p {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: rgba(248,246,241,0.5);
+  }
+
+  /* ======================== */
+  /* SECTION 6: RESEARCH LIB */
+  /* ======================== */
+  #research { padding: 6rem 4rem; background: var(--light-gray); }
+
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .research-card {
+    background: var(--white);
+    border: 1px solid var(--gray);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .research-card:hover {
+    border-color: var(--red);
+    box-shadow: 4px 4px 0 var(--red);
+  }
+  .research-card .topic-tag {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--black);
+    color: var(--white);
+    padding: 0.25rem 0.6rem;
+    margin-bottom: 0.8rem;
+    align-self: flex-start;
+  }
+  .research-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--black);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+  .research-card .authors {
+    font-size: 0.8rem;
+    color: var(--mid-gray);
+    margin-bottom: 0.8rem;
+    font-style: italic;
+  }
+  .research-card .key-finding {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: #444;
+    flex: 1;
+    margin-bottom: 1.2rem;
+    border-left: 3px solid var(--red);
+    padding-left: 0.8rem;
+  }
+  .research-card a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    text-decoration: none;
+    align-self: flex-start;
+    border-bottom: 1px solid var(--red);
+    padding-bottom: 1px;
+  }
+  .research-card a:hover { opacity: 0.7; }
+
+  /* CTA STRIP */
+  .cta-strip {
+    background: var(--red);
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+  .cta-strip h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .cta-strip p {
+    font-size: 0.95rem;
+    color: rgba(248,246,241,0.75);
+    margin-top: 0.5rem;
+  }
+  .btn-white {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--white);
+    color: var(--red);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-white:hover { background: var(--black); color: var(--white); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 3px solid var(--red);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--white);
+  }
+  .footer-logo span { color: var(--red); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--red); }
+  .footer-copy { font-size: 0.75rem; color: var(--mid-gray); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-links { display: none; }
+    .nav-logo { font-size: 0.75rem; }
+
+    .page-header { padding: 7rem 1.2rem 3rem; }
+    .page-header::after { display: none; }
+
+    .section-tabs { padding: 0 1.2rem; }
+    .tab-link { padding: 1rem 0.8rem; font-size: 0.72rem; }
+
+    #facts, #regulation, #rights, #policy, #storage, #research { padding: 3.5rem 1.2rem; }
+
+    .facts-hero-grid { grid-template-columns: 1fr; }
+    .myth-fact-grid { grid-template-columns: 1fr; }
+
+    .reg-pipeline { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .reg-pipeline::before { display: none; }
+    .reg-compare { grid-template-columns: 1fr; }
+
+    .rights-grid { grid-template-columns: 1fr; }
+
+    .policy-layout { grid-template-columns: 1fr; }
+
+    .storage-stat-row { grid-template-columns: 1fr; }
+    .storage-tips { grid-template-columns: 1fr 1fr; }
+
+    .research-grid { grid-template-columns: 1fr; }
+
+    .cta-strip { grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem 1.2rem; }
+    .btn-white { width: 100%; text-align: center; display: block; }
+
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem 1.2rem; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><span>American</span> Cannabis Consumer Alliance</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#facts" class="active">Resources</a></li>
+    <li><a href="index.html#join">Join</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-eyebrow">Resource Center</p>
+    <h1 class="page-title">The facts are<br><em>on our side.</em></h1>
+    <p class="page-desc">Everything you need to cut through the misinformation — sourced, cited, and built for consumers who want to fight back with evidence.</p>
+  </div>
+</div>
+
+<!-- SECTION TABS -->
+<div class="section-tabs">
+  <a href="#facts" class="tab-link active">The Facts</a>
+  <a href="#regulation" class="tab-link">How Regulation Works</a>
+  <a href="#rights" class="tab-link">Know Your Rights</a>
+  <a href="#policy" class="tab-link">Policy Watch</a>
+  <a href="#storage" class="tab-link">Safe Storage</a>
+  <a href="#research" class="tab-link">Research Library</a>
+</div>
+
+<!-- ==================== -->
+<!-- SECTION 1: THE FACTS -->
+<!-- ==================== -->
+<section id="facts">
+  <p class="section-label">The Facts</p>
+  <h2 class="section-title">What the data actually shows.</h2>
+  <p class="section-subtitle">Prohibition-era talking points don't hold up to scrutiny. Here's what peer-reviewed science and federal data tell us.</p>
+
+  <div class="facts-hero-grid">
+    <div class="fact-hero-card">
+      <div class="big-number">30yr</div>
+      <div class="fact-title">Low in Teen Cannabis Use</div>
+      <p class="fact-body">Teen cannabis use is at a 30-year low. Between 2012 and 2025, past-year use fell 30% among 12th graders, 44% among 10th graders, and 34% among 8th graders. Legalization has not caused teen use to rise — in 19 of 21 states with pre/post data, it decreased after legalization.</p>
+      <p class="fact-source">Source: <a href="https://nida.nih.gov/news-events/news-releases/2024/12" target="_blank">NIDA Monitoring the Future Survey, 2024</a></p>
+    </div>
+    <div class="fact-hero-card">
+      <div class="big-number">88%</div>
+      <div class="fact-title">Of Americans Support Legal Cannabis</div>
+      <p class="fact-body">Nearly 9 in 10 U.S. adults say cannabis should be legal for medical or recreational use. Just 11% say it should not be legal at all. This is not a fringe position — it is mainstream American opinion across party lines, races, and age groups.</p>
+      <p class="fact-source">Source: <a href="https://www.pewresearch.org/politics/2024/03/26/most-americans-favor-legalizing-marijuana-for-medical-recreational-use/" target="_blank">Pew Research Center, March 2024</a></p>
+    </div>
+    <div class="fact-hero-card">
+      <div class="big-number">$20B+</div>
+      <div class="fact-title">In State Tax Revenue Generated</div>
+      <p class="fact-body">Legal adult-use cannabis sales generated more than $20 billion in state tax revenue by Q1 2024. That money funds schools, public health programs, and community reinvestment — resources that prohibition never delivered.</p>
+      <p class="fact-source">Source: <a href="https://blog.mpp.org/general/2024-a-year-of-progress-and-challenges-as-cannabis-policy-continues-to-evolve/" target="_blank">Marijuana Policy Project, 2024</a></p>
+    </div>
+  </div>
+
+  <!-- Myth vs Fact -->
+  <p class="section-label" style="margin-top:3rem">Myth vs. Fact</p>
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;margin-bottom:2rem;">Common claims. Real answers.</h3>
+
+  <div class="myth-fact-grid">
+    <div class="myth-fact-card">
+      <span class="myth-tag myth">Myth</span>
+      <h4>Cannabis edibles are a top cause of childhood poisoning</h4>
+      <p>Proponents of restrictive packaging bills often cite rising ER visits as evidence of a crisis caused by legal edibles.</p>
+    </div>
+    <div class="myth-fact-card">
+      <span class="myth-tag fact">Fact</span>
+      <h4>Edibles don't crack the top 10 causes in children ages 0–5</h4>
+      <p>Oregon Poison Center 2023 data shows household cleaners, cosmetics, and pain relievers each cause over 1,600 pediatric incidents annually. Cannabis edibles account for far fewer. Rising ER numbers largely reflect parents feeling safer disclosing post-legalization — not a true spike in incidents.</p>
+      <a href="https://www.ohsu.edu/sites/default/files/2025-07/2024%20OPC%20AnnualRpt_v4.pdf" target="_blank" class="source-link">→ Oregon Poison Center Annual Report 2023</a>
+    </div>
+
+    <div class="myth-fact-card">
+      <span class="myth-tag myth">Myth</span>
+      <h4>THC can cause fatal respiratory depression like opioids</h4>
+      <p>Horror stories about children on ventilators have been used to justify sweeping restrictions on legal cannabis products.</p>
+    </div>
+    <div class="myth-fact-card">
+      <span class="myth-tag fact">Fact</span>
+      <h4>THC does not cause respiratory depression — this is peer-reviewed science</h4>
+      <p>Unlike opioids, THC receptors in the brainstem are only presynaptic — they cannot directly shut down breathing. Severe cases in children are likely pharmacological outliers involving undiagnosed conditions, extreme dose-to-weight ratios, or adulterated unregulated products.</p>
+      <a href="https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2023.1126004/full" target="_blank" class="source-link">→ Wiese et al., Frontiers in Neuroscience, 2023</a>
+    </div>
+
+    <div class="myth-fact-card">
+      <span class="myth-tag myth">Myth</span>
+      <h4>Legalization increases teen drug use</h4>
+      <p>One of the most persistent arguments against cannabis reform is that it sends a permissive message to young people.</p>
+    </div>
+    <div class="myth-fact-card">
+      <span class="myth-tag fact">Fact</span>
+      <h4>Teen use is at a 30-year low in legalized states</h4>
+      <p>Federal survey data shows the opposite of what prohibition advocates predict. When cannabis is regulated, it's harder for teens to access — dealers don't card. The regulated market creates age verification that the black market never had.</p>
+      <a href="https://nida.nih.gov/news-events/news-releases/2024/12" target="_blank" class="source-link">→ NIDA Monitoring the Future Survey, 2024</a>
+    </div>
+
+    <div class="myth-fact-card">
+      <span class="myth-tag myth">Myth</span>
+      <h4>Individual unit packaging protects children from edibles</h4>
+      <p>Legislation like Oregon's SB 1548 assumed that individually wrapping every gummy unit would prevent pediatric exposure.</p>
+    </div>
+    <div class="myth-fact-card">
+      <span class="myth-tag fact">Fact</span>
+      <h4>Education and safe storage are what actually change outcomes</h4>
+      <p>88% of pediatric cannabis edible ER events are attributed to lack of safe storage — not product design. CPSC analysis found it cannot conclude that individual unit packaging outperforms standard child-resistant packaging. Oregon's own Poison Center director, Dr. Rob Hendrickson, publicly stated the real solution is education and locked storage.</p>
+      <a href="https://www.opb.org/article/2025/08/21/cannabis-poisoning-oregon/" target="_blank" class="source-link">→ Dr. Hendrickson, OPB Think Out Loud, 2025</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= -->
+<!-- SECTION 2: HOW REGULATION WORKS -->
+<!-- ============================= -->
+<section id="regulation">
+  <p class="section-label">How Regulation Works</p>
+  <h2 class="section-title">The licensed market is the safe market.</h2>
+  <p class="section-subtitle">Every licensed cannabis product in a legal state goes through a rigorous chain of oversight that the unregulated market — including homemade edibles — will never match.</p>
+
+  <div class="reg-pipeline">
+    <div class="reg-step">
+      <div class="reg-step-number">1</div>
+      <h4>Cultivation</h4>
+      <p>Licensed grows with state inspections, pesticide restrictions, and documented inputs</p>
+    </div>
+    <div class="reg-step">
+      <div class="reg-step-number">2</div>
+      <h4>Lab Testing</h4>
+      <p>Mandatory third-party testing for potency, pesticides, heavy metals, and microbials</p>
+    </div>
+    <div class="reg-step">
+      <div class="reg-step-number">3</div>
+      <h4>Labeling</h4>
+      <p>Required dosage information, ingredients, warnings, and child-resistant packaging</p>
+    </div>
+    <div class="reg-step">
+      <div class="reg-step-number">4</div>
+      <h4>Tracking</h4>
+      <p>Seed-to-sale tracking systems that monitor every product from harvest to point of sale</p>
+    </div>
+    <div class="reg-step">
+      <div class="reg-step-number">5</div>
+      <h4>Age Verification</h4>
+      <p>ID required at point of sale — 21+ only. No licensed retailer can sell to a minor legally</p>
+    </div>
+  </div>
+
+  <div class="reg-compare">
+    <div class="reg-compare-col legal">
+      <h3>✓ Licensed Legal Market</h3>
+      <ul>
+        <li>Mandatory third-party lab testing for potency and contaminants</li>
+        <li>Child-resistant packaging required by law</li>
+        <li>Accurate dosage labeling on every product</li>
+        <li>Age verification at point of sale — 21+ only</li>
+        <li>State inspections and license requirements</li>
+        <li>Seed-to-sale tracking for full accountability</li>
+        <li>No synthetic cannabinoids or adulterants</li>
+        <li>Consumer recourse if products are mislabeled</li>
+      </ul>
+    </div>
+    <div class="reg-compare-col unregulated">
+      <h3>✕ Unregulated / Black Market</h3>
+      <ul>
+        <li>No testing — unknown potency, pesticides, or adulterants</li>
+        <li>No packaging requirements — often stored in unmarked containers</li>
+        <li>No dosage information — consumers guessing at every use</li>
+        <li>No age verification — sold to anyone</li>
+        <li>No oversight or inspections of any kind</li>
+        <li>No accountability chain — no way to trace a bad product</li>
+        <li>Synthetic cannabinoids increasingly common — 80x more potent than THC</li>
+        <li>No consumer recourse whatsoever</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= -->
+<!-- SECTION 3: KNOW YOUR RIGHTS -->
+<!-- ========================= -->
+<section id="rights">
+  <p class="section-label">Know Your Rights</p>
+  <h2 class="section-title">Informed consumers are protected consumers.</h2>
+  <p class="section-subtitle">Your rights as a cannabis consumer vary by state, but knowing the basics means you're never caught off guard.</p>
+
+  <div class="rights-grid">
+    <div class="rights-card">
+      <span class="rights-icon">🏠</span>
+      <h3>Home Cultivation</h3>
+      <p>Many legal states allow adults to grow a limited number of cannabis plants at home for personal use. Oregon allows up to 4 plants per household for adults 21+. Know your state's limit — and keep them out of public view.</p>
+      <a href="https://norml.org/laws/" target="_blank" class="learn-more">State-by-state laws →</a>
+    </div>
+    <div class="rights-card">
+      <span class="rights-icon">🚗</span>
+      <h3>Transportation & Travel</h3>
+      <p>In legal states, you can transport cannabis in a sealed container in your vehicle — but open containers follow the same rules as open alcohol. Never cross state lines with cannabis, even between two legal states. Federal jurisdiction applies on interstate roads.</p>
+      <a href="https://norml.org/laws/" target="_blank" class="learn-more">Transportation rules →</a>
+    </div>
+    <div class="rights-card">
+      <span class="rights-icon">💼</span>
+      <h3>Workplace Protections</h3>
+      <p>Workplace protections for cannabis consumers are still evolving. Some states now prohibit employers from discriminating against off-duty cannabis use, but many do not. Safety-sensitive positions and federal contractors have fewer protections. Know your state's law before disclosing use to an employer.</p>
+      <a href="https://norml.org/laws/" target="_blank" class="learn-more">Workplace rights →</a>
+    </div>
+    <div class="rights-card">
+      <span class="rights-icon">🏥</span>
+      <h3>Medical Patient Rights</h3>
+      <p>Medical cannabis patients often have additional protections — higher possession limits, access to dispensaries in states without adult-use, and in some cases employment and housing protections. A valid medical card can also provide legal protection in states with decriminalization but not full legalization.</p>
+      <a href="https://www.mpp.org/issues/medical-marijuana/" target="_blank" class="learn-more">Patient resources →</a>
+    </div>
+    <div class="rights-card">
+      <span class="rights-icon">✊</span>
+      <h3>If You Are Cited or Arrested</h3>
+      <p>Even in legal states, violations can occur — exceeding possession limits, consuming in public, or driving impaired. If cited or arrested: stay calm, don't argue at the scene, don't consent to searches without a warrant, and contact a cannabis-knowledgeable attorney immediately.</p>
+      <a href="https://norml.org/legal-committee/" target="_blank" class="learn-more">Find legal help →</a>
+    </div>
+    <div class="rights-card">
+      <span class="rights-icon">🗳️</span>
+      <h3>Your Right to Advocate</h3>
+      <p>The most powerful right you have is your voice. You can testify at legislative hearings, write letters to the editor, contact your representatives, and vote. Consumer voices in the room when bad policy is being made change outcomes — as ACCA proved when Oregon's SB 1548 was defeated.</p>
+      <a href="index.html#join" class="learn-more">Join the Alliance →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================== -->
+<!-- SECTION 4: POLICY WATCH    -->
+<!-- ========================== -->
+<section id="policy">
+  <p class="section-label">Policy Watch</p>
+  <h2 class="section-title">Bills that affect you.</h2>
+  <p class="section-subtitle">We track legislation that impacts cannabis consumers in Oregon, Hawai'i, and nationally. When something moves, you'll know.</p>
+
+  <div class="policy-layout">
+    <div class="policy-featured">
+      <span class="status-badge badge-defeated">Defeated — Oregon 2025</span>
+      <h3>SB 1548 — Individual Edible Packaging & 10mg Unit Cap</h3>
+      <p>Oregon Senate Bill 1548 would have required individual wrapping for every cannabis edible unit regardless of THC content per unit, and would have limited each unit to no more than 10mg THC. The bill was backed by claims of a child safety crisis — claims that were not supported by Oregon's own Poison Center data, peer-reviewed science on THC pharmacology, or evidence on the effectiveness of unit packaging. ACCA organized consumer testimony, distributed research, and helped make the consumer voice heard in the House. The bill was defeated.</p>
+      <p class="outcome">Outcome: Defeated in the Oregon House, 2025 session. Expected to return in 2027.</p>
+    </div>
+    <div class="policy-sidebar">
+      <div class="policy-item">
+        <div class="item-state">Oregon — Watch</div>
+        <h4>SB 1548 Redux — Expected 2027</h4>
+        <p>Sen. Reynolds has signaled intent to reintroduce. ACCA is building its list and research base now.</p>
+      </div>
+      <div class="policy-item">
+        <div class="item-state">Federal — Active</div>
+        <h4>Cannabis Rescheduling (Schedule III)</h4>
+        <p>DEA proposed moving cannabis to Schedule III. Over 90% of public comments supported rescheduling or full descheduling.</p>
+      </div>
+      <div class="policy-item">
+        <div class="item-state">Federal — Active</div>
+        <h4>Hemp-Derived Intoxicants Restrictions</h4>
+        <p>Congress approved legislation restricting hemp-derived products — a development that could push consumers toward the unregulated market.</p>
+      </div>
+      <div class="policy-item">
+        <div class="item-state">Hawai'i — Watch</div>
+        <h4>Adult-Use Expansion</h4>
+        <p>Hawai'i continues to delay meaningful adult-use policy. Consumer organizing is needed ahead of the next session.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= -->
+<!-- SECTION 5: SAFE STORAGE   -->
+<!-- ========================= -->
+<section id="storage">
+  <p class="section-label">Safe Storage</p>
+  <h2 class="section-title">The real solution is in your hands.</h2>
+  <p class="section-subtitle">The data is clear: the vast majority of pediatric cannabis exposure events come down to one thing — adults not storing products securely. This is a fixable problem.</p>
+
+  <div class="storage-stat-row">
+    <div class="storage-stat">
+      <div class="pct">88%</div>
+      <div class="pct-label">Of pediatric cannabis edible ER events attributed to lack of safe storage</div>
+      <div class="pct-source">Canadian Review, ScienceDirect</div>
+    </div>
+    <div class="storage-stat">
+      <div class="pct">45%</div>
+      <div class="pct-label">Of cannabis users in homes with children received zero storage information from a retailer or clinician</div>
+      <div class="pct-source">California Pediatric ED Survey, WestJEM 2021</div>
+    </div>
+    <div class="storage-stat">
+      <div class="pct">91%</div>
+      <div class="pct-label">Of pediatric edible exposures occur in the child's own home — where an adult brought the product</div>
+      <div class="pct-source">AAP Pediatrics, 2023</div>
+    </div>
+  </div>
+
+  <div class="storage-tips">
+    <div class="storage-tip">
+      <span class="tip-icon">🔒</span>
+      <h4>Lock It Up</h4>
+      <p>Store all cannabis products in a locked container or cabinet. Children are resourceful — a high shelf is not enough.</p>
+    </div>
+    <div class="storage-tip">
+      <span class="tip-icon">📦</span>
+      <h4>Keep Original Packaging</h4>
+      <p>Licensed cannabis comes in child-resistant packaging. Don't transfer products to unlabeled containers — the packaging is part of the safety system.</p>
+    </div>
+    <div class="storage-tip">
+      <span class="tip-icon">🗣️</span>
+      <h4>Talk to Your Household</h4>
+      <p>Everyone in the home should know where cannabis is stored, why it's locked away, and that it's not food — even if it looks like it.</p>
+    </div>
+    <div class="storage-tip">
+      <span class="tip-icon">📱</span>
+      <h4>Know Poison Control</h4>
+      <p>Save the number: <strong style="color:var(--white)">1-800-222-1222</strong>. If a child ingests cannabis, call immediately. Most cases are manageable with prompt attention.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== -->
+<!-- SECTION 6: RESEARCH LIBRARY -->
+<!-- =========================== -->
+<section id="research">
+  <p class="section-label">Research Library</p>
+  <h2 class="section-title">The sources behind the arguments.</h2>
+  <p class="section-subtitle">Every claim ACCA makes is backed by peer-reviewed science, government data, or primary source reporting. Here's our working bibliography.</p>
+
+  <div class="research-grid">
+    <div class="research-card">
+      <span class="topic-tag">Teen Use</span>
+      <h3>Monitoring the Future Survey</h3>
+      <p class="authors">National Institute on Drug Abuse (NIDA), December 2024</p>
+      <p class="key-finding">Past-year cannabis use among 12th graders is at a 30-year low at 26%. Between 2012–2025, use fell 30% among 12th graders, 44% among 10th graders, and 34% among 8th graders. 19 of 21 states with pre/post legalization data saw teen use decrease after legalization.</p>
+      <a href="https://nida.nih.gov/news-events/news-releases/2024/12" target="_blank">View Source →</a>
+    </div>
+
+    <div class="research-card">
+      <span class="topic-tag">THC Pharmacology</span>
+      <h3>The Endocannabinoid System and Breathing</h3>
+      <p class="authors">Wiese et al., Frontiers in Neuroscience, April 2023</p>
+      <p class="key-finding">Comprehensive peer-reviewed literature review from the University of Arizona Department of Pharmacology. Explicitly states THC does not cause respiratory depression. CB1 receptors are only presynaptic — unlike opioid receptors — meaning they cannot cause fatal respiratory arrest. Distinguishes natural THC from synthetic cannabinoids, which are 80x more potent and linked to mass casualty events.</p>
+      <a href="https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2023.1126004/full" target="_blank">View Source →</a>
+    </div>
+
+    <div class="research-card">
+      <span class="topic-tag">Pediatric Safety</span>
+      <h3>Oregon Poison Center Annual Report</h3>
+      <p class="authors">Oregon Health & Science University, 2023</p>
+      <p class="key-finding">Cannabis edibles do not appear in the top 10 causes of accidental poisoning in children ages 0–5 in Oregon. Household cleaners (1,659 incidents), cosmetics (1,636), and analgesics (1,606) all rank far higher. Provides critical baseline for evaluating the proportionality of restrictive cannabis packaging legislation.</p>
+      <a href="https://www.ohsu.edu/sites/default/files/2025-07/2024%20OPC%20AnnualRpt_v4.pdf" target="_blank">View Source →</a>
+    </div>
+
+    <div class="research-card">
+      <span class="topic-tag">Safe Storage</span>
+      <h3>Pediatric Cannabis Edible Exposures — California ED Survey</h3>
+      <p class="authors">Western Journal of Emergency Medicine (WestJEM), PMC, 2021</p>
+      <p class="key-finding">Survey of cannabis users in homes with children at a California pediatric emergency department. Found 45% received zero storage information from a retailer or clinician. Only 44.8% kept cannabis both locked and hidden. Confirms that the storage education gap — not product design — is the primary intervention point.</p>
+      <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8251965/" target="_blank">View Source →</a>
+    </div>
+
+    <div class="research-card">
+      <span class="topic-tag">Public Opinion</span>
+      <h3>Americans' Views on Marijuana Legalization</h3>
+      <p class="authors">Pew Research Center, March 2024</p>
+      <p class="key-finding">88% of U.S. adults say cannabis should be legal for medical or recreational use. 52% say recreational legalization is good for local economies. 42% say it makes the criminal justice system fairer. Broad majorities across racial and ethnic groups support legalization in some form.</p>
+      <a href="https://www.pewresearch.org/politics/2024/03/26/most-americans-favor-legalizing-marijuana-for-medical-recreational-use/" target="_blank">View Source →</a>
+    </div>
+
+    <div class="research-card">
+      <span class="topic-tag">Economic Impact</span>
+      <h3>2024 Year in Review: Cannabis Policy Progress</h3>
+      <p class="authors">Marijuana Policy Project, December 2024</p>
+      <p class="key-finding">Legal adult-use cannabis sales surpassed $20 billion in cumulative state tax revenue by Q1 2024. The U.S. legal cannabis industry supports over 440,000 full-time equivalent jobs. Tax revenues fund schools, public health programs, and community reinvestment — resources prohibition never delivered.</p>
+      <a href="https://blog.mpp.org/general/2024-a-year-of-progress-and-challenges-as-cannabis-policy-continues-to-evolve/" target="_blank">View Source →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div>
+    <h2>There is no cannabis industry without consumers.</h2>
+    <p>Join the Alliance and be the first to know when policy moves against us.</p>
+  </div>
+  <a href="index.html#join" class="btn-white">Join the Alliance →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><span>American</span> Cannabis Consumer Alliance</div>
+  <ul class="footer-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Policy</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#">Privacy</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 ACCA. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
