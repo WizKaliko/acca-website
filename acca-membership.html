@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Join the Alliance — American Cannabis Consumer Alliance</title>
+<meta name="description" content="Join ACCA as a founding member. Support consumer advocacy in cannabis policy from $5/month." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://americancannabisconsumer.com/acca-membership.html" />
+<meta property="og:title" content="Join the Alliance — ACCA" />
+<meta property="og:description" content="Become a founding member of the American Cannabis Consumer Alliance. Support consumer advocacy in cannabis policy." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://americancannabisconsumer.com/acca-membership.html" />
+<meta property="og:image" content="https://raw.githubusercontent.com/WizKaliko/acca-website/main/acca-social-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Join the Alliance — ACCA" />
+<meta name="twitter:description" content="Become a founding member of the American Cannabis Consumer Alliance." />
+<meta name="twitter:image" content="https://raw.githubusercontent.com/WizKaliko/acca-website/main/acca-social-card.png" />
 <!-- MailerLite Universal -->
 <script>
     (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
@@ -870,8 +884,9 @@
   <div>
     <div class="free-join-form">
       <input type="text" id="ml-first-name" placeholder="First name">
+      <input type="text" id="ml-last-name" placeholder="Last name">
       <input type="email" id="ml-email" placeholder="Email address">
-      <input type="text" id="ml-state" placeholder="State">
+      <input type="text" id="ml-zip" placeholder="Zip code">
       <button class="btn-black" onclick="submitToMailerLite()">Join the Alliance — It's Free →</button>
       <p class="free-note" id="ml-message">No spam. No selling your data. Unsubscribe anytime.</p>
     </div>
@@ -895,24 +910,27 @@
 <script>
   function submitToMailerLite() {
     const firstName = document.getElementById('ml-first-name').value.trim();
+    const lastName = document.getElementById('ml-last-name').value.trim();
     const email = document.getElementById('ml-email').value.trim();
     const msg = document.getElementById('ml-message');
     if (!email) { msg.textContent = 'Please enter your email address.'; msg.style.color = '#C8102E'; return; }
-    // Populate and submit the hidden MailerLite form
     const mlForm = document.querySelector('.ml-embedded');
     if (mlForm) {
       const mlEmail = mlForm.querySelector('input[type="email"]');
-      const mlName = mlForm.querySelector('input[name*="name"], input[placeholder*="name"]');
+      const mlFirst = mlForm.querySelector('input[name*="first"], input[placeholder*="First"]');
+      const mlLast = mlForm.querySelector('input[name*="last"], input[placeholder*="Last"]');
       if (mlEmail) mlEmail.value = email;
-      if (mlName) mlName.value = firstName;
+      if (mlFirst) mlFirst.value = firstName;
+      if (mlLast) mlLast.value = lastName;
       const mlBtn = mlForm.querySelector('button[type="submit"], input[type="submit"]');
       if (mlBtn) mlBtn.click();
     }
     msg.textContent = '✓ You\'re on the list. Welcome to the Alliance.';
     msg.style.color = '#C8102E';
     document.getElementById('ml-first-name').value = '';
+    document.getElementById('ml-last-name').value = '';
     document.getElementById('ml-email').value = '';
-    document.getElementById('ml-state').value = '';
+    document.getElementById('ml-zip').value = '';
   }
 
   function selectAmount(btn, amount) {

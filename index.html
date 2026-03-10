@@ -4,6 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>American Cannabis Consumer Alliance</title>
+<meta name="description" content="The American Cannabis Consumer Alliance is the organized voice of cannabis consumers in policy debates. Join us." />
+<meta name="keywords" content="cannabis consumer advocacy, cannabis policy, Oregon cannabis, cannabis consumers, ACCA, American Cannabis Consumer Alliance" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://americancannabisconsumer.com" />
+<meta property="og:title" content="American Cannabis Consumer Alliance" />
+<meta property="og:description" content="There is no cannabis industry without consumers. Join the organized consumer voice in cannabis policy." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://americancannabisconsumer.com" />
+<meta property="og:image" content="https://raw.githubusercontent.com/WizKaliko/acca-website/main/acca-social-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="American Cannabis Consumer Alliance" />
+<meta name="twitter:description" content="There is no cannabis industry without consumers. Join the organized consumer voice in cannabis policy." />
+<meta name="twitter:image" content="https://raw.githubusercontent.com/WizKaliko/acca-website/main/acca-social-card.png" />
 <!-- MailerLite Universal -->
 <script>
     (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
@@ -959,9 +974,10 @@
     <h2 class="section-title">Your voice matters when it counts most.</h2>
     <p>When cannabis legislation moves, we activate. Join our network to stay informed, get the facts, and show up when consumers need to be heard.</p>
     <div class="join-form">
-      <input type="text" id="join-name" placeholder="First name">
+      <input type="text" id="join-first" placeholder="First name">
+      <input type="text" id="join-last" placeholder="Last name">
       <input type="email" id="join-email" placeholder="Email address">
-      <input type="text" id="join-state" placeholder="State">
+      <input type="text" id="join-zip" placeholder="Zip code">
       <button class="btn-primary" onclick="submitJoin()">Join the Alliance →</button>
       <p id="join-msg" style="font-size:0.85rem;margin-top:0.5rem;"></p>
     </div>
@@ -991,13 +1007,15 @@
 </footer>
 
 <script>
-  function submitToML(email, firstName) {
+  function submitToML(email, firstName, lastName) {
     const mlForm = document.querySelector('.ml-embedded');
     if (mlForm) {
       const mlEmail = mlForm.querySelector('input[type="email"]');
-      const mlName = mlForm.querySelector('input[name*="name"], input[placeholder*="name"]');
+      const mlFirst = mlForm.querySelector('input[name*="first"], input[placeholder*="First"]');
+      const mlLast = mlForm.querySelector('input[name*="last"], input[placeholder*="Last"]');
       if (mlEmail) mlEmail.value = email;
-      if (mlName) mlName.value = firstName;
+      if (mlFirst) mlFirst.value = firstName;
+      if (mlLast) mlLast.value = lastName;
       const mlBtn = mlForm.querySelector('button[type="submit"], input[type="submit"]');
       if (mlBtn) mlBtn.click();
     }
@@ -1013,15 +1031,17 @@
   }
   function submitJoin() {
     const email = document.getElementById('join-email').value.trim();
-    const name = document.getElementById('join-name').value.trim();
+    const first = document.getElementById('join-first').value.trim();
+    const last = document.getElementById('join-last').value.trim();
     const msg = document.getElementById('join-msg');
     if (!email) { msg.textContent = 'Please enter your email.'; msg.style.color = '#C8102E'; return; }
-    submitToML(email, name);
+    submitToML(email, first, last);
     msg.textContent = '✓ You\'re on the list. Welcome to the Alliance.';
     msg.style.color = '#C8102E';
-    document.getElementById('join-name').value = '';
+    document.getElementById('join-first').value = '';
+    document.getElementById('join-last').value = '';
     document.getElementById('join-email').value = '';
-    document.getElementById('join-state').value = '';
+    document.getElementById('join-zip').value = '';
   }
 </script>
 
