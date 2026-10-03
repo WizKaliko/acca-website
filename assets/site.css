@@ -160,6 +160,7 @@ p{margin:0 0 1em;max-width:var(--measure)}
 .library h3{font-size:23px}
 .library .by{font-size:15px;color:var(--mid);margin:2px 0 8px}
 .library p{font-size:17px;margin-bottom:6px}
+.lib-q{margin:10px 0 4px;padding:2px 0 2px 14px;border-left:3px solid var(--red);font:400 16px/1.5 var(--f-body);color:var(--ink-2)}
 @media (max-width:760px){.library li{grid-template-columns:minmax(0,1fr)}}
 
 .toc{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:26px;padding:0;list-style:none;font:600 19px var(--f-display)}
