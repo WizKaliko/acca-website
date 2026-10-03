@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="description" content="Draft. Not for publication.">
+<meta name="theme-color" content="#0A0A0A">
+<title>American Cannabis Consumer Scorecard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: three levels. Overview (four small maps + all-states table) → one question (big map + states by rating)
+   → one state (summary → uniform details → full cited research file). Persistent top nav + state finder. */
+:root{
+  --bg:#F8F6F1; --surface:#FFFFFF; --ink:#0A0A0A; --ink-2:#3B3733; --muted:#6B6560; --line:#E3DED4; --line-2:#CFC8BB;
+  --accent:#0A0A0A; --focus:#0A0A0A; --map-stroke:#FFFFFF; --map-edge:#AEB8B0;
+  --t3:#0D4733; --t2:#358663; --t1:#86BEA1; --t0:#E3E7E2; --t-ink3:#FFFFFF; --t-ink2:#FFFFFF; --t-ink1:#15211B; --t-ink0:#15211B;
+  --stop:#C23B2E; --stop-2:#E9A79F; --stop-ink:#FFFFFF; --warn:#CF902A; --warn-ink:#15211B; --nodata:#F4F6F2; --hatch:#C9D0C9;
+  --note-bg:#FFF4DA; --note-ink:#6B4A07;
+  --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Barlow","Helvetica Neue",Arial,system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --rule-text:"Darker green = better for consumers";
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0E0D0C; --surface:#181716; --ink:#F2EFE9; --ink-2:#C9C3B9; --muted:#9A938A; --line:#2C2A27; --line-2:#3B3835;
+  --accent:#F2EFE9; --focus:#F2EFE9; --map-stroke:#161B18; --map-edge:#4A524D;
+  --t3:#A6E3C6; --t2:#4E9E7E; --t1:#2E5444; --t0:#1E2420; --t-ink3:#0E1210; --t-ink2:#0E1210; --t-ink1:#E7EDE8; --t-ink0:#E7EDE8;
+  --stop:#E06A5C; --stop-2:#7A2F27; --stop-ink:#0E1210; --warn:#EBB650; --warn-ink:#0E1210; --nodata:#1A201C; --hatch:#2E3631;
+  --note-bg:#3A2E12; --note-ink:#F2CB80; --rule-text:"Brighter green = better for consumers"; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0E0D0C; --surface:#181716; --ink:#F2EFE9; --ink-2:#C9C3B9; --muted:#9A938A; --line:#2C2A27; --line-2:#3B3835;
+  --accent:#F2EFE9; --focus:#F2EFE9; --map-stroke:#161B18; --map-edge:#4A524D;
+  --t3:#A6E3C6; --t2:#4E9E7E; --t1:#2E5444; --t0:#1E2420; --t-ink3:#0E1210; --t-ink2:#0E1210; --t-ink1:#E7EDE8; --t-ink0:#E7EDE8;
+  --stop:#E06A5C; --stop-2:#7A2F27; --stop-ink:#0E1210; --warn:#EBB650; --warn-ink:#0E1210; --nodata:#1A201C; --hatch:#2E3631;
+  --note-bg:#3A2E12; --note-ink:#F2CB80; --rule-text:"Brighter green = better for consumers"; color-scheme:dark }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--f-body);margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+.eyebrow{font:500 12px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)} .ink2{color:var(--ink-2)}
+/* top bar */
+.bar{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:10}
+.bar-in{max-width:1220px;margin:0 auto;padding-inline:clamp(16px,3vw,32px);padding-block:10px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}
+.brand{display:grid;line-height:1.1;text-decoration:none;color:var(--ink);margin-right:auto}
+.brand b{font:800 19px var(--f-display)}
+.brand span{font:500 10.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+nav.main{display:flex;flex-wrap:wrap;gap:2px}
+nav.main a{font:600 14px var(--f-body);color:var(--ink-2);text-decoration:none;padding:7px 10px;border-radius:7px}
+nav.main a:hover{background:var(--bg);color:var(--ink)}
+nav.main a[aria-current="page"]{background:var(--ink);color:var(--surface)}
+.finder{min-width:180px}
+select,input[type=search]{font:15px var(--f-body);padding:8px 10px;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);color:var(--ink);width:100%}
+@media (max-width:820px){ .finder{flex:1 1 100%} }
+.wrap{max-width:1220px;margin:0 auto;padding-inline:clamp(16px,3vw,32px);padding-block:26px 64px}
+.draft{display:inline-block;font:500 12px/1.35 var(--f-mono);background:var(--note-bg);color:var(--note-ink);padding:5px 9px;border-radius:6px}
+.lede{display:grid;gap:8px;margin-bottom:22px;max-width:760px}
+.lede h1{font-size:clamp(30px,4.4vw,46px);font-weight:800;line-height:1.03}
+.lede p{margin:0;color:var(--ink-2);font-size:17px}
+.crumb{font-size:14px;color:var(--muted);margin-bottom:8px} .crumb a{color:var(--muted)}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:24px}
+@media (max-width:700px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{background:var(--surface);padding:14px 16px;display:grid;gap:2px}
+.stat b{font:800 32px/1 var(--f-display)}
+.stat span{font-size:14px;color:var(--ink-2)}
+.stat i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:0}
+/* cards & maps */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;min-width:0}
+.quad{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:820px){.quad{grid-template-columns:minmax(0,1fr)}}
+.qcard{padding:16px;display:grid;gap:8px;text-decoration:none;color:inherit;cursor:pointer}
+.qcard:hover{border-color:var(--ink-2)}
+.qcard h2{font-size:21px;font-weight:600}
+.qcard .go{font:600 14px var(--f-body);color:var(--accent)}
+svg.map{width:100%;height:auto;display:block}
+.st{stroke:var(--map-edge);stroke-width:.6;cursor:pointer}
+.st:hover,.st:focus-visible{stroke:var(--ink);stroke-width:1.8;outline:none}
+.st.sel{stroke:var(--ink);stroke-width:2.6}
+.borders{display:none}
+.edge{fill:none;stroke:var(--map-edge);stroke-width:.6;pointer-events:none}
+.dclabel{font:500 11px var(--f-mono);fill:var(--ink-2)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;align-items:center}
+.sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px;border:1px solid var(--line-2)}
+.legend .n{font:500 12px var(--f-mono);color:var(--muted);margin-left:3px}
+.legend .rule{font-size:12.5px;color:var(--muted)} .legend .rule::after{content:var(--rule-text)}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--surface);font-size:13.5px;line-height:1.35;padding:7px 10px;border-radius:6px;max-width:260px;z-index:20}
+.tip b{display:block}
+/* pills */
+.pill{display:inline-block;font:600 12px/1 var(--f-body);padding:6px 9px;border-radius:999px;white-space:nowrap;text-align:center}
+.pill[data-c="t3"]{background:var(--t3);color:var(--t-ink3)} .pill[data-c="t2"]{background:var(--t2);color:var(--t-ink2)}
+.pill[data-c="t1"]{background:var(--t1);color:var(--t-ink1)} .pill[data-c="t0"]{background:var(--t0);color:var(--t-ink0);border:1px solid var(--line-2)}
+.pill[data-c="stop"]{background:repeating-linear-gradient(135deg,var(--stop) 0 6px,color-mix(in srgb,var(--stop) 80%,var(--stop-2)) 6px 9px);color:var(--stop-ink)}
+.pill[data-c="warn"]{background:var(--warn);color:var(--warn-ink)}
+.pill[data-c="nd"]{background:var(--nodata);color:var(--ink-2);border:1px dashed var(--line-2)}
+.pill.legal{background:var(--bg);color:var(--ink-2);border:1px solid var(--line-2)}
+/* table */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{font:600 12px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:var(--bg);white-space:nowrap}
+thead th button{all:unset;cursor:pointer} thead th button:focus-visible{outline:2px solid var(--focus)}
+tbody tr.row{cursor:pointer} tbody tr.row:hover{background:var(--bg)}
+tr:last-child td{border-bottom:0}
+tr.grp th{font:500 12px var(--f-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--accent);background:var(--bg);padding-top:16px}
+td.lab{color:var(--ink-2);width:30%;min-width:150px}
+td .v{font-weight:600} td .nt{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+section{margin-top:40px} section>h2{font-size:clamp(22px,2.8vw,30px);font-weight:800;margin-bottom:6px} section>p{color:var(--ink-2);max-width:66ch;margin:0 0 14px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px} .toolbar input{max-width:320px}
+/* question view */
+.qgrid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:900px){.qgrid{grid-template-columns:minmax(0,1fr)}}
+.mapbox{padding:14px;display:grid;gap:10px}
+.tiers{padding:16px;display:grid;gap:14px}
+.tiergrp{display:grid;gap:6px}
+.tiergrp .h{display:flex;gap:8px;align-items:center;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chips a{font-size:13.5px;text-decoration:none;color:var(--ink);border:1px solid var(--line-2);padding:3px 8px;border-radius:6px;background:var(--surface)}
+.chips a:hover{border-color:var(--ink)}
+/* state view */
+.shead{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end;justify-content:space-between;margin-bottom:16px}
+.shead h1{font-size:clamp(34px,5vw,54px);font-weight:800;line-height:1}
+.btn{font:600 14px var(--f-body);padding:9px 13px;border-radius:8px;border:1px solid var(--ink);background:var(--ink);color:var(--surface);cursor:pointer;text-decoration:none;display:inline-block}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:18px;overflow-x:auto}
+.tabs button{all:unset;cursor:pointer;font:600 15px var(--f-body);padding:10px 14px;color:var(--ink-2);border-bottom:2px solid transparent;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.tabs button:focus-visible{outline:2px solid var(--focus)}
+.answers{display:grid}
+.ans{display:grid;grid-template-columns:120px minmax(0,1fr);gap:4px 16px;padding:16px 0;border-top:1px solid var(--line)}
+.ans:first-child{border-top:0}
+@media (max-width:560px){.ans{grid-template-columns:minmax(0,1fr)}}
+.ans .pill{justify-self:start;align-self:start;min-width:100px}
+.ans h3{font-size:19px;font-weight:600}
+.ans p{margin:2px 0 0;color:var(--ink-2)}
+.why{margin-top:8px;font-size:14px}
+.why summary{cursor:pointer;color:var(--accent);font-weight:600}
+.why table{font-size:13.5px;margin-top:6px} .why td{padding:6px 10px} .why td.p{font-family:var(--f-mono);white-space:nowrap;text-align:right}
+.two{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:900px){.two{grid-template-columns:minmax(0,1fr)}}
+.aside{padding:16px;display:grid;gap:14px;font-size:14.5px}
+.aside h3{font-size:16px;font-weight:600}
+.aside ul{margin:4px 0 0;padding-left:18px;color:var(--ink-2)}
+details.fg{border-top:1px solid var(--line)}
+details.fg>summary{cursor:pointer;list-style:none;padding:13px 0;display:flex;justify-content:space-between;gap:8px;font:600 17px var(--f-display)}
+details.fg>summary::-webkit-details-marker{display:none}
+details.fg>summary .c{font:500 12px var(--f-mono);color:var(--muted);margin-left:auto;align-self:center}
+.fld{padding:10px 0 12px;border-top:1px dashed var(--line);display:grid;gap:4px}
+.fld .l{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 10px;font-weight:600;font-size:15px}
+.fld .l small{font:500 11px var(--f-mono);color:var(--muted)}
+.fld .val{font-size:14.5px;overflow-wrap:anywhere} .fld .d{font-size:14px;color:var(--ink-2);overflow-wrap:anywhere}
+.fld .m{font:500 11.5px var(--f-mono);color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 12px}
+.srcs{margin:2px 0 0;padding-left:18px;font-size:13px;color:var(--ink-2)} .srcs li{overflow-wrap:anywhere}
+.code{display:inline-block;font:600 12.5px var(--f-mono);background:var(--bg);border:1px solid var(--line-2);padding:2px 7px;border-radius:4px}
+.cmpsel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:12px;max-width:620px}
+.method{display:grid;gap:4px}
+details.how{border-top:1px solid var(--line)}
+details.how>summary{cursor:pointer;padding:14px 0;font:600 18px var(--f-display);list-style:none;display:flex;justify-content:space-between}
+details.how>summary::-webkit-details-marker{display:none}
+details.how>summary::after,details.fg>summary::after{content:"+";font:500 18px var(--f-mono);color:var(--muted)}
+details.how[open]>summary::after,details.fg[open]>summary::after{content:"–"}
+.rules td.pts{font-family:var(--f-mono);white-space:nowrap;color:var(--muted)}
+.foot{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+
+/* ---------- phone layout ---------- */
+.only-phone{display:none}
+@media (max-width:640px){.only-phone{display:inline-block}}
+.swipe{display:none;font-size:13px;color:var(--muted);margin:0 0 8px}
+@media (max-width:820px){
+  .bar{position:static}
+  nav.main{order:3;width:100%;overflow:visible;flex-wrap:wrap;gap:4px}
+  nav.main a{white-space:nowrap;padding:9px 11px;min-height:40px;display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--bg)}
+}
+@media (max-width:640px){
+  body{font-size:15.5px}
+  .wrap{padding-block:18px 48px}
+  .lede p{font-size:16px}
+  .crumb a{display:inline-block;padding:8px 0}
+  .chips a{padding:8px 11px;font-size:14px}
+  .qcard{padding:14px}
+  .shead{display:grid;gap:12px}
+  .shead .btn{width:100%;text-align:center;padding:12px}
+  .tabs button{padding:12px 12px}
+  .swipe{display:block}
+  /* stacked two-column rows: label on its own line */
+  table.stack, table.stack tbody, table.stack thead{display:block}
+  table.stack tr{display:grid;grid-template-columns:minmax(0,1fr);border-bottom:1px solid var(--line)}
+  table.stack tr:last-child{border-bottom:0}
+  table.stack td,table.stack th{border-bottom:0}
+  table.stack td.lab{width:auto;min-width:0;padding-bottom:0;font-size:13px;text-transform:uppercase;letter-spacing:.04em;font-family:var(--f-mono)}
+  table.stack tr.grp{display:block}
+  /* compare: label row, then the two states side by side */
+  table.cmp, table.cmp tbody, table.cmp thead{display:block}
+  table.cmp tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-bottom:1px solid var(--line)}
+  table.cmp td,table.cmp th{border-bottom:0;padding:8px 12px;min-width:0;overflow-wrap:anywhere}
+  table.cmp td.lab{grid-column:1/-1;width:auto;min-width:0;padding-bottom:0;font:500 12px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  table.cmp thead tr th:first-child{display:none}
+  table.cmp thead{position:sticky;top:0;z-index:2}
+  table.cmp tr.grp th{grid-column:1/-1}
+  .cmpsel{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  /* all-states: one card per state */
+  table.cards thead{display:none}
+  table.cards, table.cards tbody{display:block}
+  table.cards tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px 10px;padding:12px 14px;border-bottom:1px solid var(--line)}
+  table.cards td{border:0;padding:0;display:flex;flex-direction:column;gap:3px;align-items:flex-start}
+  table.cards td:nth-child(1){grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center;gap:8px}
+  table.cards td:nth-child(2){display:none}
+  table.cards td[data-l]::before{content:attr(data-l);font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  /* wide facts table: sticky state column */
+  table.wide td:first-child, table.wide th:first-child{position:sticky;left:0;background:var(--surface);z-index:1;box-shadow:1px 0 0 var(--line)}
+  table.wide thead th:first-child{background:var(--bg)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (forced-colors:active){.st{stroke:CanvasText}}
+
+/* ACCA chrome */
+.bar{background:#0A0A0A;border-bottom:0;color:#fff}
+.brand{display:grid;gap:3px;margin-right:auto;line-height:1.05}
+.brand .org{font:700 15px/1 var(--f-display);color:#D8D3CB;text-decoration:none;text-transform:none;letter-spacing:.01em}
+.brand .org b{font:inherit;font-weight:800;color:#E8213F}
+.brand .tool{font:800 24px/1 var(--f-display);color:#fff;text-decoration:none;letter-spacing:.005em}
+.brand a:hover{text-decoration:underline}
+nav.main a{font:600 17px/1 var(--f-display);color:#D8D3CB;border-radius:0;padding:10px 10px}
+nav.main a:hover{background:#2a2724;color:#fff}
+nav.main a[aria-current="page"]{background:transparent;color:#fff;box-shadow:inset 0 -3px 0 #C8102E}
+.bar :focus-visible{outline-color:#fff}
+.bar select{border-color:#4a4642}
+h1,h2,h3{letter-spacing:0}
+.lede h1{font-size:clamp(36px,5.2vw,58px);line-height:.98}
+.stat b{font-size:38px}
+.btn{border-radius:0}
+@media (max-width:820px){nav.main a{background:transparent;border-color:#4a4642;color:#E8E4DC} nav.main a[aria-current="page"]{background:#C8102E;border-color:#C8102E;color:#fff;box-shadow:none}}
+.sc-foot{max-width:1220px;margin:0 auto;padding:0 clamp(16px,3vw,32px) 40px;font-size:14px;color:var(--muted)}
+.sc-foot a{color:var(--muted)}
+</style>
+
+<header class="bar"><div class="bar-in">
+  <div class="brand"><a class="org" href="/"><b>American</b> Cannabis Consumer Alliance</a><a class="tool" href="#overview">American Cannabis Consumer Scorecard</a></div>
+  <nav class="main" id="nav" aria-label="Sections"></nav>
+  <div class="finder"><select id="finder" aria-label="Go to a state"></select></div>
+</div></header>
+<main class="wrap" id="view"></main>
+<div class="tip" id="tip" hidden></div>
+<footer class="sc-foot"><p>Draft ratings for ACCA review. Not for publication until legal review is complete. <a href="/">American Cannabis Consumer Alliance</a></p></footer>
+
+<script src="data.js"></script>
+<script>
+const D = window.SC_DATA;
+const NS = "http://www.w3.org/2000/svg";
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const QS = ["access","rights","equity","market"];
+const QK = {access:"Access", rights:"Protections", equity:"Equity", market:"Market"};
+const QQ = {access:"Can I buy and use cannabis here?", rights:"Am I protected?", equity:"Is the opportunity shared fairly?", market:"Who controls the market?"};
+const ST = Object.keys(D.states).sort((a,b) => D.states[a].n.localeCompare(D.states[b].n));
+const LEGAL = {adult_use:"Legal for adults", medical_only:"Medical only", low_thc_only:"Low-THC only", prohibited:"Prohibited"};
+const tip = document.getElementById("tip");
+const UI = {tab:"summary", a:"CA", b:"FL", sortK:"n", sortD:1, filter:"", fq:""};
+
+// ---- tier → color class ----
+function cls(q, label){
+  if (label === "Prohibited") return "stop";
+  if (label === "Concentrated") return "warn";
+  if (label === "No licensed market" || label === "Not rated") return "nd";
+  if (label === "Low-THC only") return "t0";
+  const t = D.rubric[q].tiers.map(x => x[1]); const i = t.indexOf(label);
+  if (i < 0) return "nd";
+  return t.length === 3 ? ["t3","t2","t1"][i] : ["t3","t2","t1","t0"][i];
+}
+function fillOf(c, uid){ return c === "warn" ? "var(--warn)" : c === "stop" ? `url(#stop-${uid})` : c === "nd" ? `url(#nd-${uid})` : `var(--${c})`; }
+function pill(q, s){ const l = D.states[s].r[q][1]; return `<span class="pill" data-c="${cls(q, l)}">${esc(l)}</span>`; }
+function order(q){ const rated = D.rubric[q].tiers.map(x => x[1]); const sp = q === "access" ? ["Low-THC only","Prohibited"] : ["No licensed market","Prohibited"]; return rated.concat(sp); }
+function counts(q){ const c = {}; ST.forEach(s => { const l = D.states[s].r[q][1]; c[l] = (c[l] || 0) + 1; }); return c; }
+function swatch(c){ return c === "warn" ? "background:var(--warn)" : c === "stop" ? `background:repeating-linear-gradient(135deg,var(--stop) 0 3px,var(--stop-2) 3px 5px)` : c === "nd" ? `background:repeating-linear-gradient(45deg,var(--nodata) 0 3px,var(--hatch) 3px 5px)` : `background:var(--${c})`; }
+function legend(q, withRule = true){ const c = counts(q);
+  return `<div class="legend">${order(q).filter(l => c[l]).map(l => `<span><span class="sw" style="${swatch(cls(q, l))}"></span>${esc(l)}<span class="n">${c[l]}</span></span>`).join("")}${withRule ? `<span class="rule"></span>` : ""}</div>`; }
+
+let UID = 0;
+function mapSVG(q, sel){
+  const uid = ++UID; const g = D.geo.states; const ord = Object.keys(g).sort((a,b) => g[b].area - g[a].area); const c = g.DC.c;
+  const path = s => { const l = D.states[s].r[q][1]; return `<path class="st${s === sel ? " sel" : ""}" data-st="${s}" tabindex="0" role="button" aria-label="${esc(D.states[s].n)}: ${esc(l)}" fill="${fillOf(cls(q, l), uid)}" d="${g[s].d}"></path>`; };
+  const dcl = D.states.DC.r[q][1];
+  return `<svg class="map" viewBox="0 0 975 610" role="group" aria-label="${esc(QQ[q])} map"><defs>
+    <pattern id="nd-${uid}" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--nodata)"></rect><line x1="0" y1="0" x2="0" y2="6" stroke="var(--hatch)" stroke-width="2"></line></pattern>
+    <pattern id="stop-${uid}" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(135)"><rect width="7" height="7" fill="var(--stop)"></rect><line x1="0" y1="0" x2="0" y2="7" stroke="var(--stop-2)" stroke-width="2.2"></line></pattern></defs>
+    ${ord.map(path).join("")}<path class="borders" d="${D.geo.borders}"></path>
+    <line x1="${c[0]}" y1="${c[1]}" x2="${c[0]+26}" y2="${c[1]+22}" stroke="var(--muted)" stroke-width="1"></line>
+    <rect class="st${sel === "DC" ? " sel" : ""}" data-st="DC" tabindex="0" role="button" aria-label="District of Columbia: ${esc(dcl)}" fill="${fillOf(cls(q, dcl), uid)}" x="${c[0]+26}" y="${c[1]+16}" width="14" height="14" rx="2"></rect>
+    <text class="dclabel" x="${c[0]+44}" y="${c[1]+27}">DC</text></svg>`;
+}
+function wireMaps(root){
+  root.querySelectorAll("svg.map").forEach(svg => {
+    const q = svg.closest("[data-q]")?.dataset.q;
+    svg.addEventListener("mousemove", e => { const el = e.target.closest(".st"); if (!el){ tip.hidden = true; return; }
+      const s = el.dataset.st; tip.innerHTML = `<b>${esc(D.states[s].n)}</b>${esc(QK[q])}: ${esc(D.states[s].r[q][1])}`; tip.hidden = false;
+      tip.style.left = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8) + "px"; tip.style.top = (e.clientY + 14) + "px"; });
+    svg.addEventListener("mouseleave", () => tip.hidden = true);
+    const go = el => { tip.hidden = true; location.hash = el.dataset.st; };
+    svg.addEventListener("click", e => { if (e.target.closest(".qcard") && !e.target.closest(".st")) return; const el = e.target.closest(".st"); if (el){ e.preventDefault(); e.stopPropagation(); go(el); }});
+    svg.addEventListener("keydown", e => { const el = e.target.closest(".st"); if (el && (e.key === "Enter" || e.key === " ")){ e.preventDefault(); go(el); }});
+  });
+}
+
+// ---- takeaways ----
+function takeaway(q){ const c = counts(q);
+  return {access:`${c.Strong} states give adults strong access. ${c.Prohibited} ban cannabis completely, and ${c["Low-THC only"]} allow only low-THC products.`,
+    rights:`Only ${c.Strong} states rate Strong. In ${c.Weak}, a cannabis record carries almost no protection.`,
+    equity:`${c.Strong} states rate Strong, but ${c["No program"]} licensed markets have no equity program at all.`,
+    market:`${c.Concentrated} markets are concentrated in a few chains' hands, and ${c["Closed to newcomers"]} more are closed to new businesses.`}[q]; }
+
+// ---- views ----
+function vOverview(){
+  const ls = k => ST.filter(s => D.states[s].ls === k).length;
+  return `<div class="lede"><div><span class="draft">Draft ratings for review · data as of Oct 1, 2026</span></div>
+    <h1>Where cannabis stands in all 50 states</h1>
+    <p>The American Cannabis Consumer Scorecard rates every state on four questions every consumer should be able to answer. Start with the national picture, then open any state for the details and sources.</p></div>
+  <div class="stats">
+    <div class="stat"><b>${ls("adult_use")}</b><span><i style="background:var(--t3)"></i>Legal for adults (incl. DC)</span></div>
+    <div class="stat"><b>${ls("medical_only")}</b><span><i style="background:var(--t2)"></i>Medical only</span></div>
+    <div class="stat"><b>${ls("low_thc_only")}</b><span><i style="background:var(--t0);border:1px solid var(--line-2)"></i>Low-THC only</span></div>
+    <div class="stat"><b>${ls("prohibited")}</b><span><i style="${swatch("stop")}"></i>Fully prohibited</span></div></div>
+  <div class="quad">${QS.map(q => `<div class="card qcard" data-q="${q}" data-go="${q}" tabindex="0" role="link" aria-label="${esc(QQ[q])}: open the full map">
+      <div class="eyebrow">${QK[q]}</div><h2>${esc(QQ[q])}</h2><div class="ink2" style="font-size:14.5px">${esc(takeaway(q))}</div>
+      ${mapSVG(q)}${legend(q, false)}<span class="go">See the full map and every state →</span></div>`).join("")}</div>
+  <section><h2>All states at a glance</h2><p>Select a column to sort, or a state to open its file.</p>
+    <div class="toolbar"><input type="search" id="flt" placeholder="Filter states" aria-label="Filter states" value="${esc(UI.filter)}"></div>
+    <div class="tbl"><table id="all" class="cards"></table></div></section>`;
+}
+function drawAll(){
+  const rank = (q, s) => { const l = D.states[s].r[q][1]; const o = order(q).indexOf(l); return o + (100 - (D.states[s].r[q][0] ?? 0)) / 1000; };
+  let rows = ST.filter(s => D.states[s].n.toLowerCase().includes(UI.filter.toLowerCase()));
+  const k = UI.sortK; rows.sort((a, b) => UI.sortD * (k === "n" ? D.states[a].n.localeCompare(D.states[b].n) : k === "ls" ? ["adult_use","medical_only","low_thc_only","prohibited"].indexOf(D.states[a].ls) - ["adult_use","medical_only","low_thc_only","prohibited"].indexOf(D.states[b].ls) : rank(k, a) - rank(k, b)));
+  const th = (key, lab) => `<th aria-sort="${UI.sortK === key ? (UI.sortD > 0 ? "ascending" : "descending") : "none"}"><button data-sort="${key}">${lab}${UI.sortK === key ? (UI.sortD > 0 ? " ↑" : " ↓") : ""}</button></th>`;
+  document.getElementById("all").innerHTML = `<thead><tr>${th("n","State")}${th("ls","Legal status")}${QS.map(q => th(q, QK[q])).join("")}</tr></thead><tbody>${rows.map(s =>
+    `<tr class="row" data-st="${s}" tabindex="0"><td><a href="#${s}"><b>${esc(D.states[s].n)}</b></a><span class="pill legal only-phone">${esc(LEGAL[D.states[s].ls])}</span></td><td><span class="pill legal">${esc(LEGAL[D.states[s].ls])}</span></td>${QS.map(q => `<td data-l="${QK[q]}">${pill(q, s)}</td>`).join("")}</tr>`).join("")}</tbody>`;
+}
+function vQuestion(q){
+  const c = counts(q); const R = D.rubric[q];
+  return `<div class="crumb"><a href="#overview">Overview</a> › ${QK[q]}</div>
+  <div class="lede"><h1>${esc(QQ[q])}</h1><p>${esc(takeaway(q))}</p></div>
+  <div class="qgrid" data-q="${q}"><div class="card mapbox">${mapSVG(q)}${legend(q)}</div>
+    <aside class="card tiers"><div class="eyebrow">States by rating</div>
+    ${order(q).filter(l => c[l]).map(l => { const ss = ST.filter(s => D.states[s].r[q][1] === l).sort((a, b) => (D.states[b].r[q][0] ?? 0) - (D.states[a].r[q][0] ?? 0));
+      return `<div class="tiergrp"><div class="h"><span class="pill" data-c="${cls(q, l)}">${esc(l)}</span><span class="muted" style="font-size:13px">${ss.length} ${ss.length === 1 ? "state" : "states"}</span></div>
+      <div class="chips">${ss.map(s => `<a href="#${s}">${esc(D.states[s].n)}</a>`).join("")}</div></div>`; }).join("")}
+    <a href="#method" style="font-size:14px">How this rating works →</a></aside></div>
+  <section><h2>The facts behind the rating</h2><p>The same measures for every state. Select a column header in the overview table to rank, or open a state for its sources.</p>
+    <p class="swipe">Swipe sideways to see every column.</p><div class="tbl"><table class="wide">${factsTable(q)}</table></div></section>`;
+}
+function factsTable(q){
+  const cols = D.rows[q];
+  return `<thead><tr><th>State</th><th>Rating</th>${cols.map(c => `<th>${esc(c)}</th>`).join("")}</tr></thead><tbody>${ST.map(s => `<tr class="row" data-st="${s}" tabindex="0"><td><a href="#${s}"><b>${esc(D.states[s].n)}</b></a></td><td>${pill(q, s)}</td>${D.states[s].rows[q].map(c => `<td style="white-space:nowrap">${esc(c[0])}</td>`).join("")}</tr>`).join("")}</tbody>`;
+}
+function vState(s){
+  const S = D.states[s];
+  return `<div class="crumb"><a href="#overview">Overview</a> › ${esc(S.n)}</div>
+  <div class="shead"><div><div style="margin-bottom:8px"><span class="pill ${S.ls === "prohibited" ? "" : "legal"}"${S.ls === "prohibited" ? ' data-c="stop"' : ""}>${esc(LEGAL[S.ls])}</span></div><h1>${esc(S.n)}</h1></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn" href="#compare" id="cmpgo">Compare with another state</a></div></div>
+  <div class="tabs" role="tablist" aria-label="State file">
+    ${[["summary","Summary"],["details","Details"],["file","Full research file"]].map(([k, l]) => `<button role="tab" data-tab="${k}" aria-selected="${UI.tab === k}">${l}</button>`).join("")}</div>
+  <div id="tabbody">${tabBody(s)}</div>`;
+}
+function tabBody(s){
+  const S = D.states[s];
+  if (UI.tab === "summary") return `<div class="two"><div class="card" style="padding:4px 18px"><div class="answers">${QS.map(q => { const r = S.r[q]; const R = D.rubric[q];
+      const why = r[2] && r[0] != null ? `<details class="why"><summary>Why ${esc(r[1])}? Score ${r[0]} of 100</summary><table><tbody>${R.rules.map((rule, i) => `<tr><td>${esc(rule[0])}</td><td class="p">${r[2][i] == null ? "not scored" : r[2][i] + " / " + rule[1]}</td></tr>`).join("")}</tbody></table></details>`
+        : (D.special[r[1]] && !(r[1] === "Prohibited" && q !== "access") ? `<div class="why muted">${esc(D.special[r[1]])}</div>` : "");
+      return `<div class="ans" data-q="${q}">${pill(q, s)}<div><h3>${esc(QQ[q])}</h3><p>${esc(S.say[q])}</p>${why}<div style="margin-top:6px;font-size:14px"><a href="#${q}">See how other states compare →</a></div></div></div>`; }).join("")}</div></div>
+    <aside class="card aside">${S.mso.length ? `<div><h3>Multistate chains here</h3><ul>${S.mso.map(e => `<li>${esc(e[0])}: ${e[1]} store${e[1] === 1 ? "" : "s"}</li>`).join("")}</ul></div>` : ""}
+      ${S.cities.length ? `<div><h3>Local equity programs</h3><ul>${S.cities.map(c => `<li>${c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.j)}</a>` : esc(c.j)} · ${esc(c.st)}</li>`).join("")}</ul></div>` : ""}
+      <div><h3>In this file</h3><p class="ink2" style="margin:4px 0 0">Details lists the same ${D.rows.access.length + D.rows.rights.length + D.rows.equity.length + D.rows.market.length} measures used for every state. The full research file has all ${Object.keys(S.f).length} coded items with their sources.</p></div></aside></div>`;
+  if (UI.tab === "details") return `<div class="tbl"><table class="stack"><tbody>${QS.map(q => `<tr class="grp"><th colspan="2">${esc(QQ[q])} &nbsp;${pill(q, s)}</th></tr>` +
+      D.rows[q].map((lab, i) => { const c = S.rows[q][i]; return `<tr><td class="lab">${esc(lab)}</td><td><span class="v">${esc(c[0])}</span>${c[1] ? `<span class="nt">${esc(c[1])}</span>` : ""}</td></tr>`; }).join("")).join("")}</tbody></table></div>`;
+  // full research file
+  const groups = {}; D.order.forEach(fid => { if (S.f[fid]) (groups[D.fields[fid].g] ||= []).push(fid); });
+  const fq = UI.fq.toLowerCase();
+  return `${S.sum ? `<div class="card" style="padding:16px;margin-bottom:14px"><div class="eyebrow" style="margin-bottom:6px">Researcher summary</div><div class="ink2" style="font-size:15px">${esc(S.sum)}</div></div>` : ""}
+    <div class="toolbar"><input type="search" id="fq" placeholder="Search this file (e.g. tax, expungement, lottery)" aria-label="Search this file" value="${esc(UI.fq)}"></div>
+    ${Object.entries(groups).map(([g, ids]) => { const hit = ids.filter(id => !fq || (D.fields[id].l + " " + S.f[id][0] + " " + S.f[id][1]).toLowerCase().includes(fq)); if (!hit.length) return "";
+      return `<details class="fg"${fq || g === "Legal status" ? " open" : ""}><summary>${esc(g)} <span class="c">${hit.length} items</span></summary>${hit.map(id => fieldRow(id, S.f[id])).join("")}</details>`; }).join("") || `<p class="muted">Nothing in this file matches “${esc(UI.fq)}”.</p>`}`;
+}
+const PV = {not_found:"Not found", "n/a":"Not applicable", yes:"Yes", no:"No"};
+function fieldRow(id, r){ const [v, d, conf, chg, , cs] = r; const enumish = typeof v === "string" && /^[a-z_\/]+$/.test(v);
+  const vv = enumish ? `<span class="code">${esc(PV[v] || v.replace(/_/g, " "))}</span>` : esc(v);
+  return `<div class="fld"><div class="l">${esc(D.fields[id].l)}<small>${esc(id)}${D.fields[id].lc && D.fields[id].lc !== "new" ? " · 2022 column " + esc(D.fields[id].lc) : ""}</small></div>
+    <div class="val">${vv}</div>${d ? `<div class="d">${esc(d)}</div>` : ""}<div class="m"><span>${esc(conf)} confidence</span></div>
+    ${cs.length ? `<ol class="srcs">${cs.map(([c, u]) => `<li>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(c)}</a>` : esc(c)}</li>`).join("")}</ol>` : ""}</div>`; }
+function vCompare(){
+  const opts = sel => ST.map(s => `<option value="${s}"${s === sel ? " selected" : ""}>${esc(D.states[s].n)}</option>`).join("");
+  return `<div class="crumb"><a href="#overview">Overview</a> › Compare</div><div class="lede"><h1>Compare two states</h1><p>Every state is measured the same way, in the same units.</p></div>
+    <div class="cmpsel"><select id="ca" aria-label="First state">${opts(UI.a)}</select><select id="cb" aria-label="Second state">${opts(UI.b)}</select></div>
+    <div class="tbl"><table id="ct" class="cmp"></table></div>`;
+}
+function drawCompare(){ const A = D.states[UI.a], B = D.states[UI.b];
+  let h = `<thead><tr><th></th><th><a href="#${UI.a}">${esc(A.n)}</a></th><th><a href="#${UI.b}">${esc(B.n)}</a></th></tr></thead><tbody>`;
+  QS.forEach(q => { h += `<tr class="grp"><th colspan="3">${esc(QQ[q])}</th></tr><tr><td class="lab"><b>Rating</b></td><td>${pill(q, UI.a)}</td><td>${pill(q, UI.b)}</td></tr>`;
+    D.rows[q].forEach((lab, i) => { h += `<tr><td class="lab">${esc(lab)}</td>${[A, B].map(X => { const c = X.rows[q][i]; return `<td><span class="v">${esc(c[0])}</span>${c[1] ? `<span class="nt">${esc(c[1])}</span>` : ""}</td>`; }).join("")}</tr>`; }); });
+  document.getElementById("ct").innerHTML = h + "</tbody>"; }
+function vMethod(){
+  return `<div class="crumb"><a href="#overview">Overview</a> › How we rate</div><div class="lede"><h1>How we rate</h1>
+    <p>Each rating adds up points from facts that are measured the same way in every state. A fact a state doesn't publish is left out, and the score is figured on what can be measured. These are draft rules for ACCA's review.</p></div>
+    <div class="card" style="padding:16px 18px;margin-bottom:18px"><h3 style="font-size:17px;margin-bottom:8px">Labels that aren't scores</h3>
+      ${Object.entries(D.special).map(([k, v]) => `<div style="display:flex;gap:10px;align-items:start;margin:6px 0"><span class="pill" data-c="${k === "Prohibited" ? "stop" : k === "Low-THC only" ? "t0" : "nd"}" style="min-width:150px">${esc(k)}</span><span class="ink2" style="font-size:14.5px">${esc(v)}</span></div>`).join("")}
+      <p class="ink2" style="font-size:14px;margin:10px 0 0">Colors: darker green is better for consumers (brighter green in dark mode). Red with stripes always means prohibited. Amber marks markets concentrated in a few chains. Hatching means not scored.</p></div>
+    ${QS.map(q => { const R = D.rubric[q]; const total = R.rules.reduce((a, r) => a + r[1], 0);
+      return `<details class="how" open><summary>${esc(R.q)}</summary>
+        <p class="ink2" style="margin:0 0 10px;font-size:14.5px">${R.tiers.map((t, i) => R.tier_notes && R.tier_notes[t[1]] ? `<b>${esc(t[1])}</b>: ${esc(R.tier_notes[t[1]])}` : `<b>${esc(t[1])}</b> ${t[0] ? t[0] + "+" : "below " + R.tiers[i - 1][0]}`).join(" · ")} (scores out of 100)</p>
+        <div class="tbl" style="margin-bottom:16px"><table class="rules stack"><tbody>${R.rules.map(r => `<tr><td><b>${esc(r[0])}</b></td><td class="ink2">${esc(r[2])}</td><td class="pts">${r[1]} pts</td></tr>`).join("")}<tr><td></td><td class="muted">Total possible</td><td class="pts">${total} pts</td></tr></tbody></table></div></details>`; }).join("")}`;
+}
+
+// ---- router ----
+function nav(cur){ const items = [["overview","Overview"], ...QS.map(q => [q, QK[q]]), ["compare","Compare"], ["method","How we rate"]];
+  document.getElementById("nav").innerHTML = items.map(([k, l]) => `<a href="#${k}"${k === cur ? ' aria-current="page"' : ""}>${l}</a>`).join(""); }
+function route(){
+  const h = (location.hash || "#overview").slice(1); const view = document.getElementById("view"); let cur = h;
+  if (D.states[h.toUpperCase()] && h.length === 2){ const s = h.toUpperCase(); cur = ""; view.innerHTML = vState(s); bindState(s); document.getElementById("finder").value = s; }
+  else { document.getElementById("finder").value = "";
+    if (QS.includes(h)) { view.innerHTML = vQuestion(h); }
+    else if (h === "compare") { view.innerHTML = vCompare(); drawCompare();
+      document.getElementById("ca").onchange = e => { UI.a = e.target.value; drawCompare(); }; document.getElementById("cb").onchange = e => { UI.b = e.target.value; drawCompare(); }; }
+    else if (h === "method") { view.innerHTML = vMethod(); }
+    else { cur = "overview"; view.innerHTML = vOverview(); drawAll();
+      document.getElementById("flt").addEventListener("input", e => { UI.filter = e.target.value; drawAll(); });
+      document.getElementById("all").addEventListener("click", e => { const b = e.target.closest("[data-sort]"); if (b){ const k = b.dataset.sort; UI.sortD = UI.sortK === k ? -UI.sortD : 1; UI.sortK = k; drawAll(); } });
+      view.querySelectorAll(".qcard").forEach(c => { c.addEventListener("click", e => { if (!e.target.closest(".st")) location.hash = c.dataset.go; });
+        c.addEventListener("keydown", e => { if (e.target === c && (e.key === "Enter" || e.key === " ")){ e.preventDefault(); location.hash = c.dataset.go; } }); });
+    }
+  }
+  nav(cur); wireMaps(view);
+  view.querySelectorAll("tr.row").forEach(tr => { tr.addEventListener("click", e => { if (!e.target.closest("a,button")) location.hash = tr.dataset.st; });
+    tr.addEventListener("keydown", e => { if (e.key === "Enter" && e.target === tr) location.hash = tr.dataset.st; }); });
+  window.scrollTo(0, 0);
+}
+function bindState(s){
+  document.getElementById("cmpgo").addEventListener("click", () => { UI.a = s; if (UI.b === s) UI.b = s === "CA" ? "NY" : "CA"; });
+  document.querySelector(".tabs").addEventListener("click", e => { const b = e.target.closest("[data-tab]"); if (!b) return; UI.tab = b.dataset.tab;
+    document.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-selected", x.dataset.tab === UI.tab)); renderTab(s); });
+  renderTab(s, true);
+}
+function renderTab(s, first){ const tb = document.getElementById("tabbody"); if (!first) tb.innerHTML = tabBody(s);
+  const fq = document.getElementById("fq"); if (fq) fq.addEventListener("input", e => { UI.fq = e.target.value; const pos = e.target.selectionStart; renderTab(s); const n = document.getElementById("fq"); n.focus(); n.setSelectionRange(pos, pos); }); }
+document.getElementById("finder").innerHTML = `<option value="">Find a state…</option>` + ST.map(s => `<option value="${s}">${esc(D.states[s].n)}</option>`).join("");
+document.getElementById("finder").addEventListener("change", e => { if (e.target.value){ UI.tab = "summary"; location.hash = e.target.value; } });
+addEventListener("hashchange", route); route();
+</script>
+
+</html>
