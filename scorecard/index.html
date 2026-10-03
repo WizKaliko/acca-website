@@ -308,7 +308,7 @@ function wireMaps(root){
 // ---- takeaways ----
 function takeaway(q){ const c = counts(q);
   return {access:`${c.Strong} states give adults strong access. ${c.Prohibited} ban cannabis completely, and ${c["Low-THC only"]} allow only low-THC products.`,
-    rights:`Only ${c.Strong} states rate Strong. In ${c.Weak}, a cannabis record carries almost no protection.`,
+    rights:`Only ${c.Strong} states rate Strong. In ${c.Weak}, possessing cannabis can still mean jail.`,
     equity:`${c.Strong} states rate Strong, but ${c["No program"]} licensed markets have no equity program at all.`,
     market:`${c.Concentrated} markets are concentrated in a few chains' hands, and ${c["Closed to newcomers"]} more are closed to new businesses.`}[q]; }
 
@@ -408,7 +408,7 @@ function vMethod(){
       <p class="ink2" style="font-size:14px;margin:10px 0 0">Colors: darker green is better for consumers (brighter green in dark mode). Red with stripes always means prohibited. Amber marks markets concentrated in a few chains. Hatching means not scored.</p></div>
     ${QS.map(q => { const R = D.rubric[q]; const total = R.rules.reduce((a, r) => a + r[1], 0);
       return `<details class="how" open><summary>${esc(R.q)}</summary>
-        <p class="ink2" style="margin:0 0 10px;font-size:14.5px">${R.tiers.map((t, i) => R.tier_notes && R.tier_notes[t[1]] ? `<b>${esc(t[1])}</b>: ${esc(R.tier_notes[t[1]])}` : `<b>${esc(t[1])}</b> ${t[0] ? t[0] + "+" : "below " + R.tiers[i - 1][0]}`).join(" · ")} (scores out of 100)</p>
+        <p class="ink2" style="margin:0 0 10px;font-size:14.5px">${R.tiers.map((t, i) => R.tier_notes && R.tier_notes[t[1]] ? `<b>${esc(t[1])}</b>: ${esc(R.tier_notes[t[1]])}` : `<b>${esc(t[1])}</b> ${t[0] ? t[0] + "+" : "below " + R.tiers[i - 1][0]}`).join(" · ")} (scores out of 100)</p>${R.note ? `<p class="ink2" style="margin:0 0 10px;font-size:14.5px">${esc(R.note)}</p>` : ""}
         <div class="tbl" style="margin-bottom:16px"><table class="rules stack"><tbody>${R.rules.map(r => `<tr><td><b>${esc(r[0])}</b></td><td class="ink2">${esc(r[2])}</td><td class="pts">${r[1]} pts</td></tr>`).join("")}<tr><td></td><td class="muted">Total possible</td><td class="pts">${total} pts</td></tr></tbody></table></div></details>`; }).join("")}`;
 }
 
