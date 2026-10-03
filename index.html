@@ -53,7 +53,8 @@ ml('account', '2176802');
       </div>
       <form class="signup-form" data-signup novalidate>
   <label class="sr" for="hero-email">Email address</label>
-  <div class="signup"><input id="hero-email" name="email" type="email" autocomplete="email" placeholder="Your email"><button type="submit">Get alerts</button></div>
+  <label class="sr" for="hero-zip">ZIP code</label>
+  <div class="signup"><input id="hero-email" name="email" type="email" autocomplete="email" placeholder="Your email"><input id="hero-zip" name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="10" placeholder="ZIP"><button type="submit">Get alerts</button></div>
   <p class="form-msg" role="status" aria-live="polite"></p>
 </form>
       <p class="after"><a href="#watch">See every measure we're watching</a></p>
@@ -147,7 +148,8 @@ ml('account', '2176802');
   <div class="form-grid">
     <label for="h-first">First name<input id="h-first" name="first" autocomplete="given-name"></label>
     <label for="h-last">Last name<input id="h-last" name="last" autocomplete="family-name"></label>
-    <label class="full" for="h-email">Email<input id="h-email" name="email" type="email" autocomplete="email" required></label>
+    <label for="h-email">Email<input id="h-email" name="email" type="email" autocomplete="email" required></label>
+    <label for="h-zip">ZIP code<input id="h-zip" name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="10" required></label>
   </div>
   <p style="margin-top:16px"><button class="btn red" type="submit">Join the Alliance</button></p>
   <p class="form-msg" role="status" aria-live="polite"></p>

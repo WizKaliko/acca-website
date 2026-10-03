@@ -31,31 +31,48 @@ if (SCORECARD_LIVE) document.documentElement.classList.add('scorecard-live');
   });
 
   // ---- signup: any <form data-signup> posts through the hidden MailerLite embed ----
-  function submitToML(email, first, last) {
+  // MailerLite's form requires email and ZIP. We fill its hidden fields, click its submit button,
+  // then report success only when MailerLite shows its own success state.
+  function mlParts() {
     var ml = document.querySelector('.ml-embedded');
-    if (!ml) return false;
-    var e = ml.querySelector('input[type="email"]'),
-        f = ml.querySelector('input[name*="first"], input[placeholder*="First"]'),
-        l = ml.querySelector('input[name*="last"], input[placeholder*="Last"]'),
-        b = ml.querySelector('button[type="submit"], input[type="submit"]');
-    if (!e || !b) return false;
-    e.value = email; if (f) f.value = first || ''; if (l) l.value = last || '';
-    b.click();
-    return true;
+    if (!ml) return null;
+    var q = function (s) { return ml.querySelector(s); };
+    return { ml: ml, email: q('input[name="fields[email]"], input[type="email"]'), first: q('input[name="fields[name]"]'),
+             last: q('input[name="fields[last_name]"]'), zip: q('input[name="fields[z_i_p]"], input[name*="zip"]'),
+             btn: q('button[type="submit"], input[type="submit"]'), ok: q('.ml-form-successBody') };
   }
+  // The embed sits in a hidden wrapper, so check the success panel's own display value.
+  function visible(el) { return el && getComputedStyle(el).display !== 'none'; }
   document.querySelectorAll('form[data-signup]').forEach(function (form) {
     form.addEventListener('submit', function (ev) {
       ev.preventDefault();
       var msg = form.querySelector('.form-msg');
-      var val = function (n) { var i = form.querySelector('[name="' + n + '"]'); return i ? i.value.trim() : ''; };
-      var email = val('email');
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = 'Enter an email address like name@example.com.'; form.querySelector('[name="email"]').focus(); return; }
-      if (submitToML(email, val('first'), val('last'))) {
-        msg.textContent = "You're on the list. We'll email you when something moves.";
-        form.reset();
-      } else {
-        msg.textContent = "The signup service didn't load. Check your connection and try again.";
-      }
+      var field = function (n) { return form.querySelector('[name="' + n + '"]'); };
+      var val = function (n) { var i = field(n); return i ? i.value.trim() : ''; };
+      var email = val('email'), zip = val('zip');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = 'Enter an email address like name@example.com.'; field('email').focus(); return; }
+      if (!/^\d{5}(-?\d{4})?$/.test(zip)) { msg.textContent = 'Enter your 5-digit ZIP code so we can tell you about bills where you live.'; field('zip').focus(); return; }
+      var m = mlParts();
+      if (!m || !m.email || !m.btn) { msg.textContent = "The signup service didn't load. Check your connection and try again."; return; }
+      m.email.value = email; if (m.zip) m.zip.value = zip;
+      if (m.first) m.first.value = val('first'); if (m.last) m.last.value = val('last');
+      var btn = form.querySelector('button[type="submit"]'); btn.disabled = true;
+      msg.textContent = 'Signing you up…';
+      m.btn.click();
+      var tries = 0, timer = setInterval(function () {
+        tries++;
+        var err = m.ml.querySelector('.ml-error');
+        if (visible(m.ok)) {
+          clearInterval(timer); btn.disabled = false; form.reset();
+          msg.textContent = "You're signed up. Check your inbox for a confirmation email and click the link to finish.";
+        } else if (err && tries > 2) {
+          clearInterval(timer); btn.disabled = false;
+          msg.textContent = 'MailerLite rejected that signup. Check your email and ZIP code and try again.';
+        } else if (tries > 40) {
+          clearInterval(timer); btn.disabled = false;
+          msg.textContent = "We couldn't confirm your signup. Try again in a minute.";
+        }
+      }, 250);
     });
   });
 
