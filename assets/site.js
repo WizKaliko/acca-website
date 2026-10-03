@@ -39,7 +39,7 @@ if (SCORECARD_LIVE) document.documentElement.classList.add('scorecard-live');
     var q = function (s) { return ml.querySelector(s); };
     return { ml: ml, email: q('input[name="fields[email]"], input[type="email"]'), first: q('input[name="fields[name]"]'),
              last: q('input[name="fields[last_name]"]'), zip: q('input[name="fields[z_i_p]"], input[name*="zip"]'),
-             btn: q('button[type="submit"], input[type="submit"]'), ok: q('.ml-form-successBody') };
+             btn: q('button.primary, button[type="submit"], input[type="submit"]'), ok: q('.ml-form-successBody') };
   }
   // The embed sits in a hidden wrapper, so check the success panel's own display value.
   function visible(el) { return el && getComputedStyle(el).display !== 'none'; }
@@ -54,6 +54,12 @@ if (SCORECARD_LIVE) document.documentElement.classList.add('scorecard-live');
       if (!/^\d{5}(-?\d{4})?$/.test(zip)) { msg.textContent = 'Enter your 5-digit ZIP code so we can tell you about bills where you live.'; field('zip').focus(); return; }
       var m = mlParts();
       if (!m || !m.email || !m.btn) { msg.textContent = "The signup service didn't load. Check your connection and try again."; return; }
+      // After a signup, MailerLite leaves its form in a "thanks" state and won't send again.
+      // Put it back to its starting state so every signup is a fresh submission.
+      var body = m.ml.querySelector('.ml-form-embedBody'), primary = m.ml.querySelector('button.primary'), loading = m.ml.querySelector('button.loading');
+      if (body) body.style.display = ''; if (m.ok) m.ok.style.display = 'none';
+      if (primary) { primary.style.display = ''; primary.disabled = false; } if (loading) loading.style.display = 'none';
+      m.ml.querySelectorAll('.ml-error').forEach(function (e) { e.classList.remove('ml-error'); });
       m.email.value = email; if (m.zip) m.zip.value = zip;
       if (m.first) m.first.value = val('first'); if (m.last) m.last.value = val('last');
       var btn = form.querySelector('button[type="submit"]'); btn.disabled = true;
