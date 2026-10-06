@@ -1,9 +1,14 @@
-/* ACCA shared script: mobile menu, MailerLite signup, vote countdown, Scorecard flag. */
+/* ACCA shared script: mobile menu, MailerLite signup, vote countdown, Scorecard and Market flags. */
 
 /* Flip to true when the Scorecard is approved for public launch.
    It reveals every element marked data-scorecard (nav link, homepage teaser). */
 var SCORECARD_LIVE = false;
 if (SCORECARD_LIVE) document.documentElement.classList.add('scorecard-live');
+
+/* Flip to true when Who Controls the Market (/market/) is approved for public launch.
+   It reveals every element marked data-market (nav and footer links). */
+var MARKET_LIVE = false;
+if (MARKET_LIVE) document.documentElement.classList.add('market-live');
 
 (function () {
   // ---- mobile menu ----
