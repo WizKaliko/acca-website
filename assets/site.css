@@ -157,11 +157,62 @@ p{margin:0 0 1em;max-width:var(--measure)}
 .library{list-style:none;margin:28px 0 0;padding:0;border-top:2px solid var(--black)}
 .library li{padding:20px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:170px minmax(0,1fr);gap:8px 28px}
 .library .topic{font:700 18px var(--f-display);color:var(--mid)}
-.library h3{font-size:23px}
+.library h3,.library h4{font:600 23px/1.1 var(--f-display);margin:0;text-wrap:balance}
 .library .by{font-size:15px;color:var(--mid);margin:2px 0 8px}
 .library p{font-size:17px;margin-bottom:6px}
 .lib-q{margin:10px 0 4px;padding:2px 0 2px 14px;border-left:3px solid var(--red);font:400 16px/1.5 var(--f-body);color:var(--ink-2)}
 @media (max-width:760px){.library li{grid-template-columns:minmax(0,1fr)}}
+
+/* library grouped by question */
+.lib-jump{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 0;padding:0;list-style:none}
+.lib-jump a{display:inline-block;font:600 17px/1.2 var(--f-display);text-decoration:none;border:1px solid var(--black);background:var(--white);padding:7px 10px}
+.lib-jump a span{font-weight:500;color:var(--mid);margin-left:2px}
+.lib-jump a:hover{background:var(--black);color:var(--white)}
+.lib-jump a:hover span{color:#D8D3CB}
+.lib-legend{font-size:15px;color:var(--ink-2);margin:20px 0 0;line-height:2}
+.lib-legend .lens{margin:0 2px}
+.lib-group{margin-top:48px;scroll-margin-top:16px}
+.lib-hub{font:700 16px/1 var(--f-display);color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin:0 0 8px}
+.lib-group > h3{font-size:clamp(26px,3.4vw,36px)}
+.lib-group > h3 .n{font:500 16px var(--f-body);color:var(--mid);white-space:nowrap;margin-left:4px}
+.lib-group .library{margin-top:16px}
+.lens{display:inline-block;justify-self:start;align-self:start;font:700 15px/1 var(--f-display);padding:5px 8px;border:2px solid var(--black);white-space:nowrap}
+.lens.case{background:var(--black);color:var(--white)}
+.lens.serious{background:var(--red);border-color:var(--red);color:var(--white)}
+.lens.contested{background:var(--white);color:var(--black);border-style:dashed}
+.lens.context{background:transparent;color:var(--mid);border-color:var(--mid)}
+
+/* reefer madness watch (claims checked) */
+.claims{list-style:none;margin:28px 0 0;padding:0;border-top:2px solid var(--black)}
+.claims > li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:28px;padding:26px 0;border-bottom:1px solid var(--line)}
+.verdict{display:inline-block;font:700 15px/1 var(--f-display);padding:5px 8px;background:var(--red);color:var(--white);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.claims h3{font-size:26px}
+.said{margin:14px 0 0;padding:2px 0 2px 14px;border-left:3px solid var(--mid);font:400 17px/1.5 var(--f-body);color:var(--ink-2)}
+.said cite{display:block;font-style:normal;font-size:14px;color:var(--mid);margin-top:6px}
+.said cite a{color:var(--mid)}
+.claims .tag{font:700 16px var(--f-display);display:block;margin-bottom:6px;color:var(--red)}
+.claims p{font-size:17px;margin:0 0 10px}
+.kernel{background:var(--stone);padding:10px 14px}
+.kernel b{font-family:var(--f-display);font-weight:700}
+@media (max-width:760px){.claims > li{grid-template-columns:minmax(0,1fr);gap:14px}}
+
+/* what we take seriously */
+.risks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 48px;margin-top:28px;border-top:2px solid var(--black)}
+.risk{padding:24px 0;border-bottom:1px solid var(--line)}
+.risk h3{margin-bottom:10px}
+.risk p{font-size:17px;margin:0 0 10px}
+.risk .do{border-left:4px solid var(--red);padding-left:14px}
+.risk .do b{font:700 18px/1.2 var(--f-display);display:block;margin-bottom:2px}
+@media (max-width:760px){.risks{grid-template-columns:minmax(0,1fr)}}
+.say{margin-top:44px;border:2px solid var(--black);background:var(--white);padding:22px clamp(16px,3vw,28px);max-width:900px}
+.say > p{font-size:17px}
+.say ol{list-style:none;margin:12px 0 0;padding:0}
+.say li{padding:16px 0;border-top:1px solid var(--line)}
+.say li p{font-size:17px;margin:0 0 6px}
+.say b{font:700 17px var(--f-display);margin-right:6px}
+.say .dont b{color:var(--mid)}
+.say .dont s{text-decoration-color:var(--red);text-decoration-thickness:2px;color:var(--ink-2)}
+.say .do b{color:var(--red)}
 
 .toc{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:26px;padding:0;list-style:none;font:600 19px var(--f-display)}
 .toc a{text-decoration:none;border-bottom:2px solid var(--red)}
