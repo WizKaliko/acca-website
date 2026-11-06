@@ -358,3 +358,32 @@ html.market-live [data-market]{display:block}
 .co-file dt{font-size:16px} .co-file dd{margin:0;font:700 19px var(--f-display);text-align:right}
 .co-file ul{margin:0;padding-left:18px;font-size:16px} .co-file li{margin-bottom:8px}
 .draft{background:#FFF4DA;color:#6B4A07;font:600 15px var(--f-body);padding:10px var(--gut);text-align:center}
+
+/* ---------- post-election hero: torn headline clippings ---------- */
+.win-left{display:flex;flex-direction:column;justify-content:flex-end;gap:clamp(18px,3vw,36px);min-width:0}
+.clips{list-style:none;margin:0;padding:0;position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:start}
+.clip{filter:drop-shadow(0 6px 10px rgba(60,0,10,.35));transition:transform .2s ease}
+.clip a{display:block;background:var(--paper);color:var(--ink);text-decoration:none;padding:22px 20px 24px}
+.clip a:hover .clip-hed{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.clip a:focus-visible{outline:3px solid var(--white);outline-offset:4px}
+.clip-src{display:block;font:700 12px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-bottom:8px}
+.clip-hed{display:block;font:700 clamp(17px,1.55vw,22px)/1.15 Georgia,"Times New Roman",serif;color:var(--ink);text-wrap:balance}
+.clip.c1{grid-column:1 / span 6;grid-row:1;transform:rotate(-3deg);z-index:2}
+.clip.c2{grid-column:7 / span 6;grid-row:1;margin:44px 0 0 -10px;transform:rotate(2.5deg);z-index:3}
+.clip.c3{grid-column:1 / span 7;grid-row:2;margin-top:-6px;transform:rotate(1.5deg);z-index:4}
+.clip.c4{grid-column:8 / span 5;grid-row:2;margin:40px 0 0 -6px;transform:rotate(-2deg);z-index:1}
+.clip:hover{transform:rotate(0) translateY(-3px);z-index:5}
+.clip.c1 a{clip-path:polygon(0.0% 3.1%,6.8% 1.0%,12.7% 0.7%,16.7% 8.0%,20.5% 5.1%,25.3% 3.6%,30.3% 1.5%,36.6% 0.7%,40.6% 0.2%,44.6% 3.3%,51.2% 3.0%,54.7% 2.1%,61.7% 0.5%,67.1% 3.0%,72.8% 2.7%,78.6% 4.0%,84.2% 7.2%,89.5% 1.1%,92.7% 7.6%,97.7% 1.6%,100.0% 4.6%,94.1% 93.0%,89.9% 97.1%,83.4% 98.9%,77.4% 99.2%,71.6% 94.4%,64.8% 93.3%,59.8% 98.4%,56.2% 95.8%,51.2% 99.4%,44.5% 95.9%,38.7% 98.2%,34.8% 99.9%,30.4% 97.9%,25.7% 97.0%,19.4% 92.9%,15.7% 96.8%,12.0% 94.7%,5.1% 98.4%,0.0% 97.6%)}
+.clip.c2 a{clip-path:polygon(0.0% 2.1%,6.1% 2.7%,9.7% 3.5%,13.7% 3.3%,18.4% 3.3%,23.8% 2.3%,27.2% 0.7%,30.6% 4.2%,35.1% 6.5%,40.1% 5.7%,47.0% 0.5%,50.1% 1.1%,54.6% 4.6%,60.6% 2.8%,67.4% 0.0%,73.8% 1.7%,80.3% 0.3%,87.1% 6.1%,94.1% 4.6%,97.8% 7.8%,100.0% 0.7%,94.6% 96.0%,89.7% 98.8%,86.2% 95.4%,81.4% 99.0%,76.6% 94.2%,70.8% 96.2%,66.2% 97.1%,62.3% 98.4%,57.5% 99.1%,51.6% 94.3%,46.2% 99.8%,41.7% 96.5%,38.3% 92.3%,32.3% 96.0%,26.5% 98.4%,22.6% 95.8%,16.6% 94.8%,13.6% 95.1%,6.9% 94.1%,0.2% 92.1%,0.0% 97.6%)}
+.clip.c3 a{clip-path:polygon(0.0% 4.7%,6.9% 3.0%,13.7% 6.8%,18.7% 5.0%,25.6% 6.3%,29.7% 6.8%,33.5% 3.0%,40.4% 6.8%,44.6% 2.3%,50.1% 6.7%,55.8% 7.5%,61.7% 6.6%,67.1% 2.9%,71.8% 3.9%,77.0% 6.7%,81.0% 0.5%,87.0% 2.2%,91.6% 0.9%,98.0% 2.2%,100.0% 6.4%,95.0% 97.8%,88.4% 96.7%,84.0% 92.3%,77.8% 94.0%,73.8% 93.5%,68.4% 93.4%,64.0% 93.8%,57.8% 96.9%,52.2% 93.8%,45.2% 92.6%,39.1% 98.9%,33.6% 94.5%,30.3% 96.3%,23.8% 92.8%,17.1% 99.3%,11.7% 93.1%,6.1% 97.4%,2.9% 92.6%,0.0% 94.8%)}
+.clip.c4 a{clip-path:polygon(0.0% 3.8%,6.3% 6.5%,12.2% 4.8%,16.5% 2.4%,20.9% 2.6%,26.0% 0.9%,31.9% 2.8%,35.5% 2.0%,40.1% 3.4%,46.2% 0.8%,50.1% 2.3%,53.8% 6.0%,57.2% 0.4%,62.5% 5.9%,68.8% 4.5%,73.1% 7.1%,79.0% 3.8%,84.3% 7.5%,91.3% 7.4%,94.8% 2.6%,99.4% 1.4%,100.0% 0.5%,93.5% 95.3%,88.0% 96.7%,81.2% 95.4%,74.7% 92.6%,68.9% 92.1%,63.9% 97.1%,57.6% 95.8%,53.3% 94.6%,48.4% 99.0%,42.1% 96.0%,35.2% 95.7%,28.4% 97.7%,24.6% 95.8%,18.5% 93.4%,12.9% 99.0%,8.3% 99.7%,3.8% 92.4%,0.0% 94.4%)}
+@media (max-width:820px){
+  .poster-win .win-left{display:contents}
+  .poster-win .win-num{order:1}
+  .poster-win .wrap > div:last-child{order:2}
+  .poster-win .clips{order:3;margin-top:8px}
+  .clip-hed{font-size:17px}
+  .clip.c1{grid-column:1 / span 10} .clip.c2{grid-column:3 / span 10;margin-top:-6px;grid-row:2}
+  .clip.c3{grid-column:1 / span 11;grid-row:3;margin-top:-6px} .clip.c4{grid-column:2 / span 11;grid-row:4;margin-top:-6px}
+}
+@media (prefers-reduced-motion:reduce){.clip{transition:none}}
