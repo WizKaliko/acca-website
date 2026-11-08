@@ -395,3 +395,21 @@ html.market-live [data-market]{display:block}
   .poster-win .count-unit{font-size:24px;max-width:none}
 }
 @media (prefers-reduced-motion:reduce){.clip{transition:none}}
+
+/* Desktop: keep the whole post-election hero (clippings, 3 to 1, headline, signup) above the fold */
+@media (min-width:821px){
+  .poster-win .wrap{padding-block:clamp(24px,3.2vh,40px) clamp(28px,4vh,48px);align-items:center}
+  .poster-win .win-left{gap:clamp(10px,2vh,22px)}
+  .poster-win .clip a{padding:14px 16px 16px}
+  .poster-win .clip-src{font-size:11px;margin-bottom:6px}
+  .poster-win .clip-hed{font-size:clamp(15px,1.25vw,19px)}
+  .poster-win .clip.c2{margin-top:26px}
+  .poster-win .clip.c3{margin-top:-10px}
+  .poster-win .clip.c4{margin-top:20px}
+  .poster-win .win-num{display:flex;align-items:flex-end;gap:20px;flex-wrap:nowrap}
+  .poster-win .count{font-size:clamp(76px,min(8.6vw,18vh),128px);margin:0}
+  .poster-win .count-unit{font-size:clamp(20px,min(1.9vw,3.4vh),28px);max-width:11ch;margin:0 0 .25em;flex:0 1 auto}
+  .poster-win h1{font-size:clamp(30px,min(3.4vw,6vh),46px);margin-bottom:14px}
+  .poster-win p{font-size:clamp(16px,min(1.3vw,2.3vh),19px)}
+  .poster-win .after{margin-top:16px;padding-top:10px}
+}
