@@ -113,7 +113,9 @@ if (MARKET_LIVE) document.documentElement.classList.add('market-live');
     });
     dots.forEach(function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
   }
-  function tick() { if (!stopped && !hovering) show(i + 1); }
+  // Phones: no rotation (the layout shows only the goal).
+  var small = window.matchMedia ? window.matchMedia('(max-width: 820px)') : { matches: false };
+  function tick() { if (!stopped && !hovering && !small.matches) show(i + 1); }
   function start() { if (!timer && !reduce) timer = setInterval(tick, 8000); }
   function stop() { clearInterval(timer); timer = null; }
   dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k); stop(); start(); }); });
@@ -130,6 +132,7 @@ if (MARKET_LIVE) document.documentElement.classList.add('market-live');
   root.addEventListener('mouseleave', function () { hovering = false; });
   root.addEventListener('focusin', function () { hovering = true; });
   root.addEventListener('focusout', function () { hovering = false; });
+  if (small.addEventListener) small.addEventListener('change', function () { if (small.matches) show(0); });
   show(0);
   start();
 })();
