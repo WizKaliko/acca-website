@@ -91,3 +91,45 @@ if (MARKET_LIVE) document.documentElement.classList.add('market-live');
   var pick = document.getElementById('state-pick');
   if (pick) pick.addEventListener('change', function () { if (pick.value) location.href = '/scorecard/#' + pick.value; });
 })();
+
+/* ---- rotating home hero: auto-advances every 8s; pauses on hover or focus; Pause button stops it;
+   no autoplay for people who ask for reduced motion. Inactive slides are hidden from screen readers. ---- */
+(function () {
+  var root = document.querySelector('.hero-visual');
+  if (!root) return;
+  var slides = [].slice.call(root.querySelectorAll('.slide'));
+  var dots = [].slice.call(root.querySelectorAll('.slide-dot'));
+  var pauseBtn = root.querySelector('.slide-pause');
+  if (slides.length < 2) return;
+  var i = 0, timer = null, stopped = false, hovering = false;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(n) {
+    i = (n + slides.length) % slides.length;
+    slides.forEach(function (s, k) {
+      var on = k === i;
+      s.classList.toggle('is-active', on);
+      s.setAttribute('aria-hidden', on ? 'false' : 'true');
+      if ('inert' in s) s.inert = !on;
+    });
+    dots.forEach(function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+  }
+  function tick() { if (!stopped && !hovering) show(i + 1); }
+  function start() { if (!timer && !reduce) timer = setInterval(tick, 8000); }
+  function stop() { clearInterval(timer); timer = null; }
+  dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k); stop(); start(); }); });
+  if (pauseBtn) {
+    if (reduce) { stopped = true; pauseBtn.textContent = 'Play'; pauseBtn.setAttribute('aria-label', 'Play slides'); }
+    pauseBtn.addEventListener('click', function () {
+      stopped = !stopped;
+      pauseBtn.textContent = stopped ? 'Play' : 'Pause';
+      pauseBtn.setAttribute('aria-label', stopped ? 'Play slides' : 'Pause slides');
+      if (stopped) stop(); else { reduce = false; start(); }
+    });
+  }
+  root.addEventListener('mouseenter', function () { hovering = true; });
+  root.addEventListener('mouseleave', function () { hovering = false; });
+  root.addEventListener('focusin', function () { hovering = true; });
+  root.addEventListener('focusout', function () { hovering = false; });
+  show(0);
+  start();
+})();
