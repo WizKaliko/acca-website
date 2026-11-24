@@ -422,16 +422,8 @@ html.market-live [data-market]{display:block}
 .slide.is-active{opacity:1;visibility:visible;transition:opacity .6s ease,visibility 0s}
 .slide-win{display:flex;flex-direction:column;justify-content:flex-end}
 
-/* Slide 1: one dot per person, a crowd that thickens toward the number */
+/* Slide 1: the goal */
 .slide-goal{position:relative;display:flex;flex-direction:column;justify-content:center;padding:clamp(18px,3vh,32px) 0 4px;isolation:isolate;container-type:inline-size}
-.crowd{position:absolute;inset:-8px -8px 0 -8px;z-index:-1;
-  background-image:radial-gradient(circle,rgba(255,255,255,.95) 2.1px,transparent 2.6px);background-size:15px 15px;
-  -webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.28) 45%,rgba(0,0,0,.06) 100%);
-          mask-image:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.28) 45%,rgba(0,0,0,.06) 100%)}
-.crowd::after{content:"";position:absolute;inset:0;background-image:inherit;background-size:inherit;
-  -webkit-mask-image:linear-gradient(100deg,transparent 30%,#000 50%,transparent 70%);mask-image:linear-gradient(100deg,transparent 30%,#000 50%,transparent 70%);
-  -webkit-mask-size:250% 100%;mask-size:250% 100%;animation:crowd-wave 7s ease-in-out infinite}
-@keyframes crowd-wave{from{-webkit-mask-position:120% 0;mask-position:120% 0}to{-webkit-mask-position:-20% 0;mask-position:-20% 0}}
 .goal-kicker{display:inline-block;align-self:flex-start;font:700 clamp(14px,1.2vw,17px)/1 var(--f-display);letter-spacing:.08em;text-transform:uppercase;
   background:var(--black);color:var(--white);padding:8px 10px;margin:0 0 14px}
 .poster .goal-num{font:800 clamp(56px,min(10.2vw,19vh),148px)/.84 var(--f-display);font-size:clamp(48px,min(17cqi,19vh),148px);letter-spacing:-.03em;color:var(--white);margin:0;
@@ -466,7 +458,6 @@ html.market-live [data-market]{display:block}
   .hero-rotator .slides{min-height:0}
   .hero-rotator .slide-win,.hero-rotator .slide-controls{display:none}
   .hero-rotator .slide-goal{opacity:1;visibility:visible;padding:0}
-  .hero-rotator .crowd{inset:-18px -40px -20px -40px;-webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,.12));mask-image:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,.12))}
   .goal-kicker{font-size:13px;padding:6px 8px;margin-bottom:10px}
   .poster .goal-num{font-size:clamp(52px,min(19cqi,112px),112px);line-height:.9;text-shadow:0 3px 0 rgba(0,0,0,.25)}
   .poster .goal-unit{font-size:clamp(24px,7.2vw,34px);margin-top:.22em;line-height:1.02}
@@ -481,5 +472,4 @@ html.market-live [data-market]{display:block}
 }
 @media (prefers-reduced-motion:reduce){
   .slide,.slide.is-active{transition:none}
-  .crowd::after{animation:none;display:none}
 }
