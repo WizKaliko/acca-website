@@ -147,8 +147,12 @@ if (MARKET_LIVE) document.documentElement.classList.add('market-live');
     first: 'Enter your first name.', last: 'Enter your last name.', email: 'Enter an email address like name@example.com.',
     zip: 'Enter your 5-digit ZIP code.', plan: 'Choose how you would like to pay.', roles: 'Choose at least one way to help.',
   };
+  // How long the page was open before a form was sent. The CRM holds anything
+  // sent within a couple of seconds for a person to review (it looks automated).
+  var OPENED = Date.now();
   function post(body) {
     body.workspace = WORKSPACE;
+    if (body.kind !== 'count') body.elapsed_ms = Date.now() - OPENED;
     return fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(body), credentials: 'omit' })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { j.status = r.status; return j; }); });
   }
