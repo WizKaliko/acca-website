@@ -27,14 +27,14 @@ ml('account', '2176802');
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="/assets/site.css?v=2026-11-07a">
+<link rel="stylesheet" href="/assets/site.css?v=2026-11-24b">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top on-black"><div class="wrap">
   <a class="mark" href="/" aria-label="American Cannabis Consumer Alliance, home"><picture><source media="(max-width:760px)" srcset="/assets/brand/logo-compact-fullcolor-dark.svg"><img src="/assets/brand/logo-horizontal-fullcolor-dark.svg" alt="American Cannabis Consumer Alliance" width="365" height="56"></picture></a>
   <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-  <ul class="nav" id="site-nav"><li><a href="/#watch">Rollback Watch</a></li><li><a href="/evidence.html">Evidence</a></li><li data-scorecard><a href="/scorecard/">Scorecard</a></li><li data-market><a href="/market/">The Market</a></li><li><a href="/about.html" aria-current="page">About</a></li><li class="join"><a href="/join.html">Join free</a></li></ul>
+  <ul class="nav" id="site-nav"><li><a href="/#watch">Rollback Watch</a></li><li><a href="/evidence.html">Evidence</a></li><li data-scorecard><a href="/scorecard/">Scorecard</a></li><li data-market><a href="/market/">The Market</a></li><li><a href="/membership.html">Membership</a></li><li><a href="/about.html" aria-current="page">About</a></li><li class="join"><a href="/join.html">Join free</a></li></ul>
 </div></header>
 
 <main id="main">
@@ -70,24 +70,58 @@ ml('account', '2176802');
   </div>
 </div></section>
 
-<section class="sec stone"><div class="wrap">
-  <h2>Founder</h2>
-  <div class="person">
+<section class="sec stone" aria-labelledby="lead-h"><div class="wrap">
+  <div class="sec-head"><h2 id="lead-h">Leadership</h2><div>
+    <p>ACCA is governed by a volunteer board of directors, and we're expanding it now. The founding board will include seats for consumers, cannabis workers and patients, so the people most affected by cannabis policy decide what we fight for.</p>
+    <ul class="seats" aria-label="Board seats"><li>Consumers</li><li>Cannabis workers</li><li>Patients</li></ul>
+    <p style="margin-top:20px">Want to help lead? <a href="#involved">Tell us below</a> and mention the board in your note.</p>
+  </div></div>
+  <div class="person" style="margin-top:48px">
     <img src="/img/headshot.jpg" alt="Portrait of Kaliko Castille" loading="lazy" width="900" height="1356">
     <div class="prose">
       <h3 style="font-size:40px">Kaliko Castille</h3>
-      <p class="role">Founder and Executive Director</p>
+      <p class="role">Founder and President</p>
       <p>Kaliko has spent more than a decade at the intersection of cannabis policy, community organizing and political strategy. He was Director of Marketing at the National Cannabis Industry Association and Board President of the Minority Cannabis Business Association, where he led MCBA's National Cannabis Equity Report and helped develop model legalization policy for state legislatures. His federal work included direct lobbying for equitable cannabis reform.</p>
       <p>He is Political Director at APANO Action Fund and founded ACCA in 2026 to give cannabis consumers a permanent, organized voice. His work has been featured on MSNBC and in Forbes, Bloomberg, Rolling Stone, The Washington Post and The Hill, and he was named to MJ Venture's 40 Under 40.</p>
     </div>
   </div>
 </div></section>
 
+<section class="sec" id="involved" aria-labelledby="inv-h"><div class="wrap sec-head">
+  <div>
+    <h2 id="inv-h">Get involved</h2>
+    <p style="margin-top:16px">We're building this state by state, and it takes people. Organize in your state, talk to customers from behind the counter, dig into the research, or help us show up at events and hearings.</p>
+    <p>Want to fund the work? <a href="/membership.html">Become a founding member.</a></p>
+  </div>
+  <div><form class="volunteer-form" data-volunteer novalidate>
+    <div class="form-grid">
+      <label for="v-first">First name<input id="v-first" name="first" autocomplete="given-name" required></label>
+      <label for="v-last">Last name<input id="v-last" name="last" autocomplete="family-name" required></label>
+      <label for="v-email">Email<input id="v-email" name="email" type="email" autocomplete="email" required></label>
+      <label for="v-zip">ZIP code<input id="v-zip" name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="10" required></label>
+    </div>
+    <fieldset class="choice">
+      <legend>How would you like to help?</legend>
+      <div class="roles">
+        <label><input type="checkbox" name="roles" value="state_organizer"> Organize in my state</label>
+        <label><input type="checkbox" name="roles" value="budtender_ambassador"> Budtender ambassador</label>
+        <label><input type="checkbox" name="roles" value="research"> Research and policy</label>
+        <label><input type="checkbox" name="roles" value="events"> Events and hearings</label>
+        <label><input type="checkbox" name="roles" value="other"> Something else</label>
+      </div>
+    </fieldset>
+    <label for="v-note" class="note-label">Tell us a little about yourself (optional)<textarea id="v-note" name="note" rows="3" maxlength="1000"></textarea></label>
+    <div class="hp" aria-hidden="true"><label for="v-fax">Leave this field empty<input id="v-fax" name="company_fax" tabindex="-1" autocomplete="off"></label></div>
+    <p style="margin-top:16px"><button class="btn red" type="submit">Count me in</button></p>
+    <p class="form-msg" role="status" aria-live="polite"></p>
+  </form></div>
+</div></section>
+
 <section class="sec dark on-black" id="transparency"><div class="wrap">
   <div class="sec-head"><h2>Our commitments to you</h2><p>What you can hold us to.</p></div>
   <div class="principles">
     <div><h3>No industry control</h3><p>Industry can sponsor events. Industry can't set our positions. Those come from consumer interests and evidence.</p></div>
-    <div><h3>Published financials</h3><p>Once we're formally established, we'll publish annual financial disclosures so anyone can see how our money is used.</p></div>
+    <div><h3>Published financials</h3><p>Every year we'll publish what we raised and how we spent it, starting with our first year.</p></div>
     <div><h3>Your data is yours</h3><p>We'll never sell, rent or share your personal information, including with industry partners or sponsors.</p></div>
     <div><h3>Public positions</h3><p>Every bill we support or oppose, every testimony and every statement we make gets posted on this site.</p></div>
   </div>
@@ -97,9 +131,9 @@ ml('account', '2176802');
   <div><a class="mark" href="/"><img src="/assets/brand/logo-horizontal-fullcolor-dark.svg" alt="American Cannabis Consumer Alliance" width="340" height="52"></a>
     <p>There is no cannabis industry without consumers.</p></div>
   <ul><li><a href="/#watch">Rollback Watch</a></li><li><a href="/evidence.html">Evidence</a></li><li data-scorecard><a href="/scorecard/">Scorecard</a></li><li data-market><a href="/market/">The Market</a></li><li><a href="/about.html">About</a></li></ul>
-  <ul><li><a href="/join.html">Join free</a></li><li><a href="/about.html#transparency">Our commitments</a></li></ul>
-  <p class="legal">© 2026 American Cannabis Consumer Alliance. 501(c)(4) status in process. We never sell, rent or share your information.</p>
+  <ul><li><a href="/membership.html">Membership</a></li><li><a href="/join.html">Join free</a></li><li><a href="/about.html#involved">Get involved</a></li><li><a href="/about.html#transparency">Our commitments</a></li></ul>
+  <p class="legal">© 2026 American Cannabis Consumer Alliance, an Oregon nonprofit corporation. Contributions are not tax-deductible as charitable contributions. We never sell, rent or share your information.</p>
 </div></footer>
-<script src="/assets/site.js?v=2026-10-06a"></script>
+<script src="/assets/site.js?v=2026-11-24b"></script>
 </body>
 </html>
