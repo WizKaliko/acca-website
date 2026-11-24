@@ -1,3 +1,8 @@
+/* GoatCounter events (no cookies): count form completions next to page views.
+   Never sends names or emails, only the event name. */
+window.accaEvent = function (name, title) {
+  try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: 'event/' + name, title: title || name, event: true }); } catch (e) { /* ignore */ }
+};
 /* ACCA shared script: mobile menu, MailerLite signup, vote countdown, Scorecard and Market flags. */
 
 /* Flip to true when the Scorecard is approved for public launch.
@@ -76,6 +81,7 @@ if (MARKET_LIVE) document.documentElement.classList.add('market-live');
         if (visible(m.ok)) {
           clearInterval(timer); btn.disabled = false; form.reset();
           msg.textContent = "You're signed up. Check your inbox for a confirmation email and click the link to finish.";
+          window.accaEvent('signup', 'Free signup');
         } else if (err && tries > 2) {
           clearInterval(timer); btn.disabled = false;
           msg.textContent = 'MailerLite rejected that signup. Check your email and ZIP code and try again.';
@@ -208,12 +214,14 @@ if (MARKET_LIVE) document.documentElement.classList.add('market-live');
   }
   document.querySelectorAll('form[data-pledge]').forEach(function (f) {
     wire(f, 'pledge', function (form, d) {
+      window.accaEvent('pledge-' + (d.plan === 'monthly' ? 'monthly' : 'once'), 'Founding pledge (' + (d.plan === 'monthly' ? 'monthly' : 'at once') + ')');
       thanks(form, 'Thank you, ' + d.first + '. We’re holding your founding spot.',
         'We’ve recorded your pledge (' + (d.plan === 'monthly' ? '$100 a month for 10 months' : '$1,000 at once') + '). Nothing has been charged. When ACCA’s bank account is open, we’ll email ' + d.email + ' a secure payment link. Once you’ve paid, we’ll confirm your founding membership.');
     });
   });
   document.querySelectorAll('form[data-volunteer]').forEach(function (f) {
     wire(f, 'volunteer', function (form, d) {
+      window.accaEvent('volunteer', 'Volunteer sign-up');
       thanks(form, 'Thank you, ' + d.first + '.', 'We’ll be in touch at ' + d.email + ' soon about how you can help.');
     });
   });
