@@ -136,3 +136,89 @@ if (MARKET_LIVE) document.documentElement.classList.add('market-live');
   show(0);
   start();
 })();
+
+/* ---- founding pledges and volunteer sign-ups: post to the ACCA CRM ----
+   Sent as text/plain JSON so the browser makes a simple request (no preflight).
+   The CRM only lets americancannabisconsumer.com read its answers. */
+(function () {
+  var ENDPOINT = 'https://thndr-strm-hub.base44.app/api/apps/6ac14247389deaa864f0553d/functions/publicPledge';
+  var WORKSPACE = 'american-cannabis-consumer-alliance';
+  var MESSAGES = {
+    first: 'Enter your first name.', last: 'Enter your last name.', email: 'Enter an email address like name@example.com.',
+    zip: 'Enter your 5-digit ZIP code.', plan: 'Choose how you would like to pay.', roles: 'Choose at least one way to help.',
+  };
+  function post(body) {
+    body.workspace = WORKSPACE;
+    return fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(body), credentials: 'omit' })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { j.status = r.status; return j; }); });
+  }
+  function check(form, kind) {
+    var v = function (n) { var i = form.querySelector('[name="' + n + '"]'); return i ? i.value.trim() : ''; };
+    var errs = {};
+    if (!v('first')) errs.first = 1;
+    if (!v('last')) errs.last = 1;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'))) errs.email = 1;
+    if (!/^\d{5}(-?\d{4})?$/.test(v('zip'))) errs.zip = 1;
+    if (kind === 'volunteer' && !form.querySelector('[name="roles"]:checked')) errs.roles = 1;
+    return errs;
+  }
+  function mark(form, errs, msg) {
+    form.querySelectorAll('[aria-invalid]').forEach(function (el) { el.removeAttribute('aria-invalid'); });
+    var keys = Object.keys(errs);
+    if (!keys.length) return false;
+    keys.forEach(function (k) { var el = form.querySelector('[name="' + k + '"]'); if (el && el.type !== 'checkbox' && el.type !== 'radio') el.setAttribute('aria-invalid', 'true'); });
+    msg.className = 'form-msg is-error';
+    msg.textContent = keys.map(function (k) { return MESSAGES[k] || 'Check the ' + k + ' field.'; }).join(' ');
+    var first = form.querySelector('[name="' + keys[0] + '"]'); if (first) first.focus();
+    return true;
+  }
+  function wire(form, kind, done) {
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var msg = form.querySelector('.form-msg');
+      if (mark(form, check(form, kind), msg)) return;
+      var data = { kind: kind };
+      new FormData(form).forEach(function (val, key) {
+        if (key === 'roles') (data.roles = data.roles || []).push(val); else data[key] = typeof val === 'string' ? val.trim() : val;
+      });
+      var btn = form.querySelector('button[type="submit"]'); btn.disabled = true;
+      msg.className = 'form-msg'; msg.textContent = 'Saving…';
+      post(data).then(function (r) {
+        btn.disabled = false;
+        if (r.ok) { done(form, data); return; }
+        if (r.fields) { mark(form, r.fields, msg); return; }
+        msg.className = 'form-msg is-error';
+        msg.textContent = r.status === 429 ? 'Too many tries from this connection. Wait a few minutes and try again.' : "We couldn't save that just now. Please try again in a few minutes.";
+      }).catch(function () {
+        btn.disabled = false; msg.className = 'form-msg is-error';
+        msg.textContent = "We couldn't reach our server. Check your connection and try again.";
+      });
+    });
+  }
+  function thanks(form, title, text) {
+    var box = document.createElement('div');
+    box.className = 'pledge-done'; box.setAttribute('role', 'status'); box.tabIndex = -1;
+    var h = document.createElement('h3'); h.textContent = title;
+    var p = document.createElement('p'); p.textContent = text;
+    box.appendChild(h); box.appendChild(p);
+    form.replaceWith(box); box.focus();
+  }
+  document.querySelectorAll('form[data-pledge]').forEach(function (f) {
+    wire(f, 'pledge', function (form, d) {
+      thanks(form, 'Thank you, ' + d.first + '. You’re a founding member.',
+        'We’ve recorded your pledge (' + (d.plan === 'monthly' ? '$100 a month for 10 months' : '$1,000 at once') + '). Nothing has been charged. We’ll email ' + d.email + ' to confirm, and send a secure payment link from ACCA once our bank account is open.');
+    });
+  });
+  document.querySelectorAll('form[data-volunteer]').forEach(function (f) {
+    wire(f, 'volunteer', function (form, d) {
+      thanks(form, 'Thank you, ' + d.first + '.', 'We’ll be in touch at ' + d.email + ' soon about how you can help.');
+    });
+  });
+  // Founding counter: shown only once there are at least 10 pledges.
+  var counter = document.querySelector('[data-founding-count]');
+  if (counter) post({ kind: 'count' }).then(function (r) {
+    if (r.ok && typeof r.founding === 'number' && r.founding >= 10) {
+      counter.textContent = r.founding + ' of 100 founding spots pledged.'; counter.hidden = false;
+    }
+  }).catch(function () {});
+})();
