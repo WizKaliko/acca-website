@@ -413,3 +413,63 @@ html.market-live [data-market]{display:block}
   .poster-win p{font-size:clamp(16px,min(1.3vw,2.3vh),19px)}
   .poster-win .after{margin-top:16px;padding-top:10px}
 }
+
+/* ---------- rotating hero (Nov 2026): slide 1 = the 1 million goal, slide 2 = the Massachusetts win ----------
+   The signup column (.hero-cta) never moves; only the left visual rotates. */
+.hero-visual{position:relative;min-width:0;display:flex;flex-direction:column;gap:14px}
+.slides{display:grid;min-width:0}
+.slide{grid-area:1 / 1;min-width:0;opacity:0;visibility:hidden;transition:opacity .6s ease,visibility 0s linear .6s}
+.slide.is-active{opacity:1;visibility:visible;transition:opacity .6s ease,visibility 0s}
+.slide-win{display:flex;flex-direction:column;justify-content:flex-end}
+
+/* Slide 1: the goal */
+.slide-goal{position:relative;display:flex;flex-direction:column;justify-content:center;padding:clamp(18px,3vh,32px) 0 4px;isolation:isolate;container-type:inline-size}
+.goal-kicker{display:inline-block;align-self:flex-start;font:700 clamp(14px,1.2vw,17px)/1 var(--f-display);letter-spacing:.08em;text-transform:uppercase;
+  background:var(--black);color:var(--white);padding:8px 10px;margin:0 0 14px}
+.poster .goal-num{font:800 clamp(56px,min(10.2vw,19vh),148px)/.84 var(--f-display);font-size:clamp(48px,min(17cqi,19vh),148px);letter-spacing:-.03em;color:var(--white);margin:0;
+  font-variant-numeric:lining-nums tabular-nums;white-space:nowrap;text-shadow:0 4px 0 var(--red-deep)}
+.poster .goal-unit{font:700 clamp(26px,min(3vw,5.4vh),44px)/1 var(--f-display);color:var(--white);margin:.18em 0 0;max-width:none}
+.poster .goal-line{font:600 clamp(17px,min(1.5vw,2.8vh),22px)/1.55 var(--f-display);color:var(--black);margin:14px 0 0;letter-spacing:.01em;max-width:none}
+.goal-line span{background:var(--white);padding:4px 10px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+
+/* Controls: two dots and pause */
+.slide-controls{display:flex;align-items:center;gap:10px}
+.slide-dot{width:28px;height:28px;border-radius:50%;border:2px solid var(--white);background:transparent;padding:0;cursor:pointer;position:relative}
+.slide-dot::after{content:"";position:absolute;inset:5px;border-radius:50%;background:transparent}
+.slide-dot[aria-current=true]::after{background:var(--white)}
+.slide-pause{font:600 15px/1 var(--f-display);background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.7);padding:6px 12px;min-height:32px;cursor:pointer;margin-left:6px}
+.slide-pause:hover,.slide-dot:hover{background:rgba(255,255,255,.12)}
+
+.hero-cta .fine{font-size:14px;margin:10px 0 0;color:#FFE9EC}
+.hero-rotator .hero-cta h1{text-wrap:balance}
+
+@media (min-width:821px){
+  .hero-rotator .slides{min-height:clamp(300px,52vh,470px)}
+  .hero-rotator h1{font-size:clamp(28px,min(3vw,5.4vh),42px)}
+}
+.cta-short{display:none}
+@media (max-width:520px){.kick-dates{display:none}}
+.hero-cta .form-msg:empty{min-height:0;margin:0}
+@media (max-width:820px){
+  /* Phones and tablets: the goal is the picture at the top, then one short line and the signup.
+     No rotation here (it would make the page jump); the Massachusetts story is in Rollback Watch. */
+  .hero-rotator .wrap{gap:14px;padding-top:0;padding-bottom:28px}
+  .hero-rotator .hero-visual{margin:0 calc(-1 * var(--gut));padding:18px var(--gut) 20px;background:var(--red-deep);overflow:hidden}
+  .hero-rotator .slides{min-height:0}
+  .hero-rotator .slide-win,.hero-rotator .slide-controls{display:none}
+  .hero-rotator .slide-goal{opacity:1;visibility:visible;padding:0}
+  .goal-kicker{font-size:13px;padding:6px 8px;margin-bottom:10px}
+  .poster .goal-num{font-size:clamp(52px,min(19cqi,112px),112px);line-height:.9;text-shadow:0 3px 0 rgba(0,0,0,.25)}
+  .poster .goal-unit{font-size:clamp(24px,7.2vw,34px);margin-top:.22em;line-height:1.02}
+  .poster .goal-line{font-size:clamp(16px,4.6vw,20px);margin-top:12px}
+  .goal-line span{padding:3px 8px}
+  /* the long headline would repeat the picture: keep it for screen readers, show a short line instead */
+  .hero-rotator .hero-cta h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .hero-rotator .cta-long{display:none}
+  .hero-rotator .cta-short{display:block;font-size:18px;line-height:1.45;color:var(--white);margin:6px 0 12px}
+  .hero-rotator .signup{margin-top:0}
+  .hero-rotator .after{margin-top:14px;padding-top:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  .slide,.slide.is-active{transition:none}
+}
