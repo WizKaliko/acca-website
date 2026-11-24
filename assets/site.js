@@ -205,8 +205,8 @@ if (MARKET_LIVE) document.documentElement.classList.add('market-live');
   }
   document.querySelectorAll('form[data-pledge]').forEach(function (f) {
     wire(f, 'pledge', function (form, d) {
-      thanks(form, 'Thank you, ' + d.first + '. You’re a founding member.',
-        'We’ve recorded your pledge (' + (d.plan === 'monthly' ? '$100 a month for 10 months' : '$1,000 at once') + '). Nothing has been charged. We’ll email ' + d.email + ' to confirm, and send a secure payment link from ACCA once our bank account is open.');
+      thanks(form, 'Thank you, ' + d.first + '. We’re holding your founding spot.',
+        'We’ve recorded your pledge (' + (d.plan === 'monthly' ? '$100 a month for 10 months' : '$1,000 at once') + '). Nothing has been charged. When ACCA’s bank account is open, we’ll email ' + d.email + ' a secure payment link. Once you’ve paid, we’ll confirm your founding membership.');
     });
   });
   document.querySelectorAll('form[data-volunteer]').forEach(function (f) {
