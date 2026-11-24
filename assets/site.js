@@ -35,6 +35,19 @@ if (MARKET_LIVE) document.documentElement.classList.add('market-live');
     else show('[data-after]');
   });
 
+  // ---- signup: a copy goes to the ACCA CRM (contact tagged "supporter") ----
+  // Fire and forget: MailerLite below is what the person sees succeed, and it
+  // sends the list emails. The CRM keeps the full list whatever MailerLite's plan allows.
+  function crmSignup(email, zip, first, last) {
+    try {
+      fetch('https://thndr-strm-hub.base44.app/api/apps/6ac14247389deaa864f0553d/functions/publicPledge', {
+        method: 'POST', headers: { 'Content-Type': 'text/plain' }, credentials: 'omit', keepalive: true,
+        body: JSON.stringify({ workspace: 'american-cannabis-consumer-alliance', kind: 'signup', email: email, zip: zip, first: first, last: last,
+          elapsed_ms: Math.round(window.performance && performance.now ? performance.now() : 10000) }),
+      }).catch(function () {});
+    } catch (e) { /* never block the signup */ }
+  }
+
   // ---- signup: any <form data-signup> posts through the hidden MailerLite embed ----
   // MailerLite's form requires email and ZIP. We fill its hidden fields, click its submit button,
   // then report success only when MailerLite shows its own success state.
@@ -57,6 +70,8 @@ if (MARKET_LIVE) document.documentElement.classList.add('market-live');
       var email = val('email'), zip = val('zip');
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = 'Enter an email address like name@example.com.'; field('email').focus(); return; }
       if (!/^\d{5}(-?\d{4})?$/.test(zip)) { msg.textContent = 'Enter your 5-digit ZIP code so we can tell you about bills where you live.'; field('zip').focus(); return; }
+      // The CRM copy goes first, so the signup is kept even if MailerLite fails to load.
+      if (form.dataset.crmSent !== email) { crmSignup(email, zip, val('first'), val('last')); form.dataset.crmSent = email; }
       var m = mlParts();
       if (!m || !m.email || !m.btn) { msg.textContent = "The signup service didn't load. Check your connection and try again."; return; }
       // After a signup, MailerLite leaves its form in a "thanks" state and won't send again.
