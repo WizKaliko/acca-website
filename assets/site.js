@@ -179,7 +179,10 @@ if (MARKET_LIVE) document.documentElement.classList.add('market-live');
       if (mark(form, check(form, kind), msg)) return;
       var data = { kind: kind };
       new FormData(form).forEach(function (val, key) {
-        if (key === 'roles') (data.roles = data.roles || []).push(val); else data[key] = typeof val === 'string' ? val.trim() : val;
+        // The spam trap is named so browsers and password managers won't autofill it; the CRM reads it as company_fax.
+        if (key === 'roles') (data.roles = data.roles || []).push(val);
+        else if (key === 'acca_check') data.company_fax = val;
+        else data[key] = typeof val === 'string' ? val.trim() : val;
       });
       var btn = form.querySelector('button[type="submit"]'); btn.disabled = true;
       msg.className = 'form-msg'; msg.textContent = 'Saving…';
